@@ -36,30 +36,74 @@
         right: 0;
         top: 10px;
       }
+
+      .fullwitdh {
+        width: 100%;
+      }
+
+      .border {
+        border: 3px solid yellow;
+      }
+
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 10px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+      .rightify {
+        text-align: right;
+        padding-right: 10px;
+      }
+
+      .leftify {
+        text-align: left;
+      }
+
+      .bottom {
+        position: absolute;
+        bottom: 0;
+      }
+
+      .strong {
+        font-weight: bold;
+      }
     </style>
   </head>
   <body>
     <textarea id="source">
 
-class: center, middle
+class: center, middle, inverse
 
-# Feature Toggles: 
-###_en enkel teknikk for å levere funksjonalitet enda raskere_
+# Feature Toggles
+#### en enkel teknikk for å levere funksjonalitet enda raskeres
 
-Ivar Conradi Østhus <br />
-@ivarconr
+### Ivar Conradi Østhus 
 
-ico@finn.no
-
+<table class="bottom">
+  <tr>
+    <td class="rightify"><img src="images/twitter.png" height="20" /></td>
+    <td class="leftify strong">@ivarconr</td>
+  </tr>
+  <tr> 
+    <td class="rightify"><img src="images/finn.png" height="20" /></td>
+    <td class="leftify strong">ico@finn.no</td>
+  </tr>
+</table>
 
 ---
 class: background-img
 
-# master branch == _motorvei til produksjon_
+# master branch => motorvei til produksjon
 <img src="images/highway.jpg">
 
 ???
-- I FINN fungerer master branchen (for de fleste applikasjoner) som motorvei til produskjon 
+- I FINN har vi optimaliser infrastrukturen for å får kode til prduksjon
+- Master branchen (for de fleste applikasjoner) som motorvei til produskjon 
+ - Ruller ut artifakter flere ganger daglig
 - Kode som sjekkes inn her vil 
  - bli bygget og tester kjøres
  - automatisk bli deployet til testmiljøer
@@ -68,35 +112,42 @@ class: background-img
 
 
 ---
-Utfordinger
+# Utfordinger
+- Optimalisert for å få ut små endringer / bugfixes
 - Det tar tid å utvikle nye funksjoner (1-3 uker)
-- Ny funksjonalitet kan involvere flere moduler/applikasjoner 
-- Ny funksjonalitet kan innvolvere flere personer og team
-- 
+ - flere personer og team
+ - flere moduler/applikasjoner 
+- Det tar tid fra kode commites til det kan deplyes i prod
 
 ---
 # Feature Branches
 
-- hva er det 
-- pros+cons
+<img class="fullwitdh border" src="images/feature_branch_simple.jpg" />
 
-(images)
+- En enkel teknikk der vi benytter egene feature branches til å utvikle ny funksjonalitet
+- Merges inn til  når funksjonen er klar
 
 ---
+# Feature Branches: paralelle features
 
-# Feature Branches
+<img class="fullwitdh border" src="images/feature_branch_double.jpg" />
 
-fordeler:
-- ingen kode havner i prod før vi er klar
+
+---
+# Feature Branches: oppsummert
+
+Fordeler:
+- Ingen kode havner i prod før vi er klar
 - lett å teste ulik kode / en annen måte å gjøre ting på
-- code review via pull-requests / merges
+- code review med pull-requests / merges
 
-ulemper:
+Ulemper:
 - "merge-hell"
-- fear of refactoring/change shared code / biblioteker osv.
-- vanskelig(ere) å dele ny kode på tvers av brancher
----
+- frykt for å refaktorere felleskode / rammeverk / bibliotek
+- vanskelig å dele __ny__ kode på tvers av brancher
+- kan ikke teste ny kode før den er klar
 
+---
 # Continous Integration
 - unngå big bang merges
 - hva betyr det?
@@ -108,7 +159,6 @@ ulemper:
 ulemper:
 - uferdige funksjoner kan havne i produksjon
 - blir skummelt å sjekke inn kode
-
 
 ---
 class: background-img
@@ -143,7 +193,7 @@ class: background-img
 - Lar oss rulle ut funksjoner før de er helt ferdig
  - Lar oss teste tidlig i produksjon
 - Økt kontroll med når en ny funksjon aktiveres
-- Lett å deaktivere nye funksjon
+- Lett å rulle tilbake nye funksjoner
 
     </textarea>
     <script src="scripts/remark-latest.min.js" type="text/javascript">
