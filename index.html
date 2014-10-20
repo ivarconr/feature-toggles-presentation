@@ -51,8 +51,30 @@ Ivar Conradi Østhus
 
 ico@finn.no
 
----
 
+---
+class: background-img
+
+# master branch == _motorvei til produksjon_
+<img src="images/highway.jpg">
+
+???
+- I FINN fungerer master branchen (for de fleste applikasjoner) som motorvei til produskjon 
+- Kode som sjekkes inn her vil 
+ - bli bygget og tester kjøres
+ - automatisk bli deployet til testmiljøer
+ - integrasjonstester blir trigget
+- Det betyr at det som sjekkes inn på master skal potensielt kunne havne i produksjon.
+
+
+---
+Utfordinger
+- Det tar tid å utvikle nye funksjoner (1-3 uker)
+- Ny funksjonalitet kan involvere flere moduler/applikasjoner 
+- Ny funksjonalitet kan innvolvere flere personer og team
+- 
+
+---
 # Feature Branches
 
 - hva er det 
