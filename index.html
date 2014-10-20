@@ -43,10 +43,10 @@
 
 class: center, middle
 
-# Feature Toggles
-## _en enkel teknikk for å levere funksjonalitet enda raskere_
+# Feature Toggles: 
+###_en enkel teknikk for å levere funksjonalitet enda raskere_
 
-Ivar Conradi Østhus
+Ivar Conradi Østhus <br />
 @ivarconr
 
 ico@finn.no
@@ -71,9 +71,9 @@ fordeler:
 
 ulemper:
 - "merge-hell"
-- fear of refactoring/change shared code
+- fear of refactoring/change shared code / biblioteker osv.
 - vanskelig(ere) å dele ny kode på tvers av brancher
-
+---
 
 # Continous Integration
 - unngå big bang merges
@@ -97,7 +97,8 @@ class: background-img
 # Feature Toggles
 - simple if statements
 - hides certain execution paths
-- 
+- allows developers to release a version of a product that has unfinished features
+- This allows many small incremental versions of software to be delivered without the cost of constant branching and merging.
 
 ---
 # Feature Toggles: klassifisering
@@ -105,6 +106,22 @@ class: background-img
 - Temporary Code Toggles
 - Permanent Code Toggles
 - Business Toggles
+
+---
+# Anbefalt arbeidsflyt
+- Lokale brancher 
+- Feature toggle dersom ikke ferdig innen en dag
+- Når funksjon er ferdig, skru den på for team/testere i alle miljøer.
+- Dersom funksjonen virker, skru den gradvis på for brukerene dine i produksjon
+- Oppdages feil? Vurder alvorlighet -> skru den av, implementer fiks og skur på funksjonen igjen
+
+---
+# Featur toggles oppsummert
+- Unngår "major merges"
+- Lar oss rulle ut funksjoner før de er helt ferdig
+ - Lar oss teste tidlig i produksjon
+- Økt kontroll med når en ny funksjon aktiveres
+- Lett å deaktivere nye funksjon
 
     </textarea>
     <script src="scripts/remark-latest.min.js" type="text/javascript">
