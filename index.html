@@ -128,27 +128,45 @@ class: background-img
 - Merges inn til  når funksjonen er klar
 
 ---
-# Feature Branches: paralelle features
+class: center, middle
+<img  src="images/pull_request.png" />
+
+---
+# Feature Branches: parallel features
 
 <img class="fullwitdh border" src="images/feature_branch_double.jpg" />
 
+---
+class: background-img
+
+# Feature Branches: refaktoreringer?
+
+<img  src="images/keep-refactoring-and-carry-on.png" />
+
+???
+- rammeverk
+- bibliotekter
+- refaktoreringer
+
 
 ---
-# Feature Branches: oppsummert
+# Feature Branches
 
-Fordeler:
+### Fordeler:
 - Ingen kode havner i prod før vi er klar
-- lett å teste ulik kode / en annen måte å gjøre ting på
-- code review med pull-requests / merges
+- Trygt å sjekke inn kode i egen branch
+- Raskt å teste nye ting uten å berøre andre
+- Code review med pull-requests
 
-Ulemper:
-- "merge-hell"
-- frykt for å refaktorere felleskode / rammeverk / bibliotek
-- vanskelig å dele __ny__ kode på tvers av brancher
-- kan ikke teste ny kode før den er klar
+### Ulemper:
+- Kan fort bli veldig dyrt/komplisert å merge
+- Vanskelig å dele __ny kode__ på tvers av brancher
+- Frykt for å refaktorere felleskode (rammeverk / bibliotek)
+- Vanskelig(ere) å vise frem ny kode før den er merget
+- Egne test-miljøer per branch?
 
 ---
-# Continous Integration
+# Continous Integration: DROPPES?
 - unngå big bang merges
 - hva betyr det?
 - integrere kode med master kontinuerlig
@@ -164,6 +182,17 @@ ulemper:
 class: background-img
 # Feature Toggles
 <img src="images/Merrydown_Cider Factory.jpg">
+
+---
+# Just simple if statements
+
+```java
+if(unleash.isEnabled("AwesomeFeature")) {
+  //do some magic
+} else {
+  //do old boring stuff
+}
+```
 
 ---
 # Feature Toggles
@@ -188,12 +217,16 @@ class: background-img
 - Oppdages feil? Vurder alvorlighet -> skru den av, implementer fiks og skur på funksjonen igjen
 
 ---
-# Featur toggles oppsummert
+# Feature toggles oppsummert
 - Unngår "major merges"
 - Lar oss rulle ut funksjoner før de er helt ferdig
  - Lar oss teste tidlig i produksjon
 - Økt kontroll med når en ny funksjon aktiveres
 - Lett å rulle tilbake nye funksjoner
+
+---
+# Psth: Unleash
+
 
     </textarea>
     <script src="scripts/remark-latest.min.js" type="text/javascript">
