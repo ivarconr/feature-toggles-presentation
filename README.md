@@ -1,4 +1,4 @@
-feature-toggles-presentation
+Smidig 2014 : feature-toggles-presentation
 ============================
 
-feature toggles - Smidig 2014 slides
+[Presentation available online (no)](http://ivarconr.github.io/feature-toggles-presentation)

@@ -11,7 +11,7 @@
 class: center, middle, inverse
 
 # Feature Toggles
-#### en enkel teknikk for å levere funksjonalitet enda raskere
+#### _en enkel teknikk for å levere funksjonalitet enda raskere_
 
 ### Ivar Conradi Østhus 
 
@@ -41,7 +41,6 @@ class: background-img
 
 ???
 - I FINN bruker vi master branchen som motorvei til prduksjon
- - Ruller ut artifakter flere ganger daglig
 - Kode som sjekkes inn på master:
  - bli bygget og enhets-tester kjøres
  - automatisk bli deployet til testmiljøer
@@ -66,16 +65,16 @@ class: background-img
 <img class="fullwitdh border" src="images/feature_branch_simple.jpg" />
 
 ???
-- Enkel teknikk 
-- separate "feature branches" for å utvikle ny funksjonalitet
-- disse merges inn når funksjonen er klar
+- Enkel teknikk
+- Egne brancher for nye funksjoner
+- Sikrer at kode ikke havner i produksjon før vi er klar
 
 ---
 class: center, middle
 <img  src="images/pull_request.png" />
 
 ---
-# Feature Branches: parallel features
+# Flere funksjoner samtidig
 
 <img class="fullwitdh border" src="images/feature_branch_double.jpg" />
 
@@ -201,6 +200,7 @@ class: background-img
 - Abridsbrancher for bruke pull requests!
  - levetid på maks noen dager
  - Små pullrequester => enklere å forstå / gi tilbakemleding
+- Firewall åpen i produksjon?
 
 ---
 # Feature toggles
@@ -208,7 +208,7 @@ class: background-img
 - Unngår tidkrevende "big bang merges"
 - Inkrementell utvikling av funksjoner
 - Rulle ut uferdig kode til produksjon
-- Teste ny (uferdig) funksjonalitet tidlig i produksjon
+- Teste ny funksjonalitet tidlig i produksjon
 - Kontroll med når nye funksjoner aktiveres
 - Gradvis utrulling til brukere
 - Lynrask tilbakerulling
