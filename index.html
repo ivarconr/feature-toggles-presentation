@@ -108,7 +108,7 @@ class: background-img
 # Feature Toggles
 <img src="images/Merrydown_Cider Factory.jpg">
 
-??? 
+???
 Feature Toggles er en enkel teknikk
 - lar oss jobbe på master-bransjen
 - gjør det mulig å release uferdig kode til produksjon
@@ -163,30 +163,25 @@ tilbakerulling: feil eller negativ KPI
 
 
 ---
-# Jeg vil ikke miste pull-requests!
-#### _Vi må lese og gi tilbakemelding på hverandres kode!_
-
-- Bruk kortvarige arbeids-brancher _per del_ for ny funksjon
-- Merges til master via _pull requests_
-
-???
-Enklere å forstå og gi tilbakemeldign på en liten pull-request
-
-
----
 # Anbefalt arbeidsflyt
 1. Bruk kortvarige arbeids-brancher _per del_ for ny funksjon
  - lever maks et par dager
-2. Beskytt funksjon med ny 'Feature Toggle'
-3. Lag pull-request
+2. Lag pull-request
  - merge til master når teamet godkjenner endring
  - rull ut til produksjon
-4. Aktiver funksjon for teamet i **produksjon**
-5. Test funksjonen
-6. (fiks eventuelle feil / forbedringer)
-7. Aktiver funksjonen gradvis for alle brukere
-8. Følg med på logger, bugs, KPI, osv.
-9. Fjern 'Feature Toggle'
+3. Aktiver funksjon for teamet i **produksjon**
+4. Test funksjonen
+5. (fiks eventuelle feil / forbedringer)
+6. Aktiver funksjonen gradvis for alle brukere
+7. Følg med på logger, bugs, KPI, osv.
+8. Fjern 'Feature Toggle'
+
+
+???
+Jeg har brukt feature toggles en stund
+
+Abridsbrancher for bruke pull requests!
+- Små pullrequester => enklere å forstå / gi tilbakemleding
 
 ---
 # Ikke misbruk teknikken!
