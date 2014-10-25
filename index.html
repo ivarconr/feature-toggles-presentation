@@ -29,7 +29,7 @@ class: center, middle, inverse
 ---
 class: background-img
 
-# master branch => motorvei til produksjon
+# master == motorvei til produksjon
 <img src="images/highway.jpg">
 
 ???
@@ -70,12 +70,10 @@ class: center, middle
 
 ---
 class: background-img
-
-# Feature Branches: refaktoreringer?
-
 <img  src="images/keep-refactoring-and-carry-on.png" />
 
 ???
+Ekstra vanskelig å refaktorere med feature branches.
 - rammeverk
 - bibliotekter
 - refaktoreringer
@@ -84,13 +82,13 @@ class: background-img
 ---
 # Feature Branches
 
-### Fordeler:
-- Ingen kode havner i prod før vi er klar
+**Fordeler:**
 - Trygt å sjekke inn kode i egen branch
-- Raskt å teste nye ting uten å berøre andre
-- Code review med pull-requests
+- Ingen kode havner i produksjon før vi er klar
+- Teste nye ting uten at det berører andre
+- Code review med _pull-requests_
 
-### Ulemper:
+**Ulemper:**
 - Kan fort bli veldig dyrt/komplisert å merge
 - Vanskelig å dele __ny kode__ på tvers av brancher
 - Frykt for å refaktorere felleskode (rammeverk / bibliotek)
@@ -98,25 +96,12 @@ class: background-img
 - Egne test-miljøer per branch?
 
 ---
-# Continous Integration: DROPPES?
-- unngå big bang merges
-- hva betyr det?
-- integrere kode med master kontinuerlig
-- all kode som sjekkes inn er "produksjonsklar"
-- kjøre tester, enhetstester, integrasjonstester, manuell testing?
-- Er alle testmiljøene helt like som produksjon?
-
-ulemper:
-- uferdige funksjoner kan havne i produksjon
-- blir skummelt å sjekke inn kode
-
----
 class: background-img
 # Feature Toggles
 <img src="images/Merrydown_Cider Factory.jpg">
 
 ---
-# Just simple if statements
+# Feature Toggles: Enkle if-tester
 
 ```java
 if(unleash.isEnabled("AwesomeFeature")) {
@@ -125,6 +110,46 @@ if(unleash.isEnabled("AwesomeFeature")) {
   //do old boring stuff
 }
 ```
+---
+# Feature Toggles: klassifisering
+
+** Code Toggles **
+- Temporary
+- Permanent
+
+<br />
+** Business Toggles **
+
+???
+I denne presentasjonen snakker jeg bare om release toggles. 
+Business toggles kan selvsagt løses med samme teknikker 
+
+---
+# Minimer impact
+
+- Så få _if_-sjekker som mulig
+- Beskytt ingangang (lenke) til nye UI-komponenter
+- Nye APIer trenger ikke beskyttelse
+ - eksisterende klienter kjenner ikke til muligheten
+
+
+---
+class: background-img
+# Feature Toggles: Kodereåte
+<img src="images/pollution.jpg">
+
+???
+- Når du ikke trenger en feature toggles lenger skal denne slettes
+- Kostbart å vedlikeholde over tid
+- Så få permanente feature toggles som mulig
+
+
+# Del opp nye 'features' så mye du kan
+- Selv om vi har feature toggles skal vi dele opp nye funksjon
+- Jo tidligere vi tester nye funksjoner på ekte brukere jo raskere får vi feedback
+
+
+# Feature Toggles:
 
 ---
 # Feature Toggles
@@ -133,13 +158,12 @@ if(unleash.isEnabled("AwesomeFeature")) {
 - allows developers to release a version of a product that has unfinished features
 - This allows many small incremental versions of software to be delivered without the cost of constant branching and merging.
 - It's very important to retire release toggles once the pending features have bedded down in production
+- unngå big bang merges
+- integrere kode med master kontinuerlig
+- all kode som sjekkes inn er "produksjonsklar"
+- kjøre tester, enhetstester, integrasjonstester, manuell testing?
+- Er alle testmiljøene helt like som produksjon?
 
----
-# Feature Toggles: klassifisering
-- Operational Toggles
-- Temporary Code Toggles
-- Permanent Code Toggles
-- Business Toggles
 
 ---
 # Anbefalt arbeidsflyt
@@ -166,7 +190,7 @@ if(unleash.isEnabled("AwesomeFeature")) {
 - http://martinfowler.com/bliki/FeatureToggle.html
 - http://en.wikipedia.org/wiki/Feature_toggle
 - http://codeascraft.com/2011/02/04/how-does-etsy-manage-development-and-operations/
-- ..
+- http://blog.disqus.com/post/789540337/partial-deployment-with-feature-switches
 
     </textarea>
     <script src="scripts/remark-latest.min.js" type="text/javascript">
