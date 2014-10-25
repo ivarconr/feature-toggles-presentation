@@ -26,6 +26,12 @@ class: center, middle, inverse
   </tr>
 </table>
 
+???
+- Ivar Østhus
+- 29år 
+- jobber som utvikler i FINN
+- feature toggles
+
 ---
 class: background-img
 
@@ -33,14 +39,15 @@ class: background-img
 <img src="images/highway.jpg">
 
 ???
-- I FINN har vi optimaliser infrastrukturen for å får kode til prduksjon
-- Master branchen (for de fleste applikasjoner) som motorvei til produskjon 
+- I FINN bruker vi master branchen som motorvei til prduksjon
  - Ruller ut artifakter flere ganger daglig
-- Kode som sjekkes inn her vil 
- - bli bygget og tester kjøres
+- Kode som sjekkes inn på master:
+ - bli bygget og enhets-tester kjøres
  - automatisk bli deployet til testmiljøer
  - integrasjonstester blir trigget
-- Det betyr at det som sjekkes inn på master skal potensielt kunne havne i produksjon.
+ - ny kode kan så deployes til produksjon
+- Alt som sjekkes inn på master: 
+  - _skal potensielt kunne havne i produksjon_
 
 
 ---
@@ -49,15 +56,17 @@ class: background-img
 - Det tar tid å utvikle nye funksjoner (1-3 uker)
  - flere personer og team
  - flere moduler/applikasjoner 
-- Det tar tid fra kode commites til det kan deplyes i prod
+- Det tar tid fra kode commites til det kan deployes i produksjon
 
 ---
 # Feature Branches
 
 <img class="fullwitdh border" src="images/feature_branch_simple.jpg" />
 
-- En enkel teknikk der vi benytter egene feature branches til å utvikle ny funksjonalitet
-- Merges inn til  når funksjonen er klar
+???
+- Enkel teknikk 
+- separate "feature branches" for å utvikle ny funksjonalitet
+- disse merges inn når funksjonen er klar
 
 ---
 class: center, middle
@@ -110,19 +119,6 @@ if(unleash.isEnabled("AwesomeFeature")) {
   //do old boring stuff
 }
 ```
----
-# Feature Toggles: klassifisering
-
-** Code Toggles **
-- Temporary
-- Permanent
-
-<br />
-** Business Toggles **
-
-???
-I denne presentasjonen snakker jeg bare om release toggles. 
-Business toggles kan selvsagt løses med samme teknikker 
 
 ---
 # Minimer impact
@@ -131,7 +127,6 @@ Business toggles kan selvsagt løses med samme teknikker
 - Beskytt ingangang (lenke) til nye UI-komponenter
 - Nye APIer trenger ikke beskyttelse
  - eksisterende klienter kjenner ikke til muligheten
-
 
 ---
 class: background-img
@@ -143,13 +138,18 @@ class: background-img
 - Kostbart å vedlikeholde over tid
 - Så få permanente feature toggles som mulig
 
-
+---
 # Del opp nye 'features' så mye du kan
 - Selv om vi har feature toggles skal vi dele opp nye funksjon
 - Jo tidligere vi tester nye funksjoner på ekte brukere jo raskere får vi feedback
 
-
-# Feature Toggles:
+---
+# Aktiveringsstrategier
+- #### For alle
+- #### For spesifikke brukere
+- #### På angitt server node
+- #### Basert på dato
+- #### Gradivs utrulling
 
 ---
 # Feature Toggles
@@ -182,15 +182,21 @@ class: background-img
 - Lett å rulle tilbake nye funksjoner
 
 ---
-# Psth: Unleash
-
+# Psst: Unleash
+### [https://github.com/finn-no/unleash](https://github.com/finn-no/unleash)
 
 ---
-# kilder
+# Takk for meg!
+- @ivarconr
+- ico@finn.no
+
+
+#### Kilder brukt i denne presentasjonen
 - http://martinfowler.com/bliki/FeatureToggle.html
 - http://en.wikipedia.org/wiki/Feature_toggle
 - http://codeascraft.com/2011/02/04/how-does-etsy-manage-development-and-operations/
 - http://blog.disqus.com/post/789540337/partial-deployment-with-feature-switches
+
 
     </textarea>
     <script src="scripts/remark-latest.min.js" type="text/javascript">

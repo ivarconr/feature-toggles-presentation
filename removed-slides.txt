@@ -1,0 +1,13 @@
+# Feature Toggles: klassifisering
+
+** Code Toggles **
+- Temporary
+- Permanent
+
+<br />
+** Business Toggles **
+
+???
+I denne presentasjonen snakker jeg bare om release toggles. 
+Business toggles kan selvsagt løses med samme teknikker 
+
