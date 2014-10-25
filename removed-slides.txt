@@ -1,3 +1,10 @@
+---
+# Ikke misbruk teknikken!
+- Del opp _funksjoner_ i så små funksjoner som mulig
+- Introduser hver funksjon så fort som mulig
+- Få feeback på at funksjonen løser riktig problem på riktig måte
+- Viktig med **hurtig** og **kontinuerlig** feedback på det vi lager!!
+
 # Feature Toggles: klassifisering
 
 ** Code Toggles **
