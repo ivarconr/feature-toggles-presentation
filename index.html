@@ -56,7 +56,7 @@ class: background-img
 - Det tar tid å utvikle nye funksjoner (1-3 uker)
  - flere personer og team
  - flere moduler/applikasjoner 
-- Det tar tid fra kode commites til det kan deployes i produksjon
+- Testmiljøer != produksjon
 
 ---
 # Feature Branches
@@ -87,7 +87,6 @@ Ekstra vanskelig å refaktorere med feature branches.
 - bibliotekter
 - refaktoreringer
 
-
 ---
 # Feature Branches
 
@@ -109,6 +108,14 @@ class: background-img
 # Feature Toggles
 <img src="images/Merrydown_Cider Factory.jpg">
 
+??? 
+Feature Toggles er en enkel teknikk
+- lar oss jobbe på master-bransjen
+- gjør det mulig å release uferdig kode til produksjon
+- skjuler uferdig funksjonalitet fra brukeren
+- gjør oss i stand til å teste nye funksjoner i produksjon (uten at brukerene eksponeres)
+- gir oss kontroll på når og hvordan vi ruller ut en ny funksjon til brukerne
+
 ---
 # Feature Toggles: Enkle if-tester
 
@@ -121,9 +128,8 @@ if(unleash.isEnabled("AwesomeFeature")) {
 ```
 
 ---
-# Minimer impact
-
-- Så få _if_-sjekker som mulig
+# Minimal impact!
+- Bruk så få _if_-sjekker som mulig
 - Beskytt ingangang (lenke) til nye UI-komponenter
 - Nye APIer trenger ikke beskyttelse
  - eksisterende klienter kjenner ikke til muligheten
@@ -139,11 +145,6 @@ class: background-img
 - Så få permanente feature toggles som mulig
 
 ---
-# Del opp nye 'features' så mye du kan
-- Selv om vi har feature toggles skal vi dele opp nye funksjon
-- Jo tidligere vi tester nye funksjoner på ekte brukere jo raskere får vi feedback
-
----
 # Aktiveringsstrategier
 - #### For alle
 - #### For spesifikke brukere
@@ -152,34 +153,57 @@ class: background-img
 - #### Gradivs utrulling
 
 ---
-# Feature Toggles
-- simple if statements
-- hides certain execution paths
-- allows developers to release a version of a product that has unfinished features
-- This allows many small incremental versions of software to be delivered without the cost of constant branching and merging.
-- It's very important to retire release toggles once the pending features have bedded down in production
-- unngå big bang merges
-- integrere kode med master kontinuerlig
-- all kode som sjekkes inn er "produksjonsklar"
-- kjøre tester, enhetstester, integrasjonstester, manuell testing?
-- Er alle testmiljøene helt like som produksjon?
+# Økt kontroll
+- hvem får tilgang til en ny funksjon og når
+- gradivs utrulling
+- lynrask og enkel _tilbakerulling_
+
+???
+tilbakerulling: feil eller negativ KPI
+
+
+---
+# Jeg vil ikke miste pull-requests!
+#### _Vi må lese og gi tilbakemelding på hverandres kode!_
+
+- Bruk kortvarige arbeids-brancher _per del_ for ny funksjon
+- Merges til master via _pull requests_
+
+???
+Enklere å forstå og gi tilbakemeldign på en liten pull-request
 
 
 ---
 # Anbefalt arbeidsflyt
-- Lokale brancher 
-- Feature toggle dersom ikke ferdig innen en dag
-- Når funksjon er ferdig, skru den på for team/testere i alle miljøer.
-- Dersom funksjonen virker, skru den gradvis på for brukerene dine i produksjon
-- Oppdages feil? Vurder alvorlighet -> skru den av, implementer fiks og skur på funksjonen igjen
+1. Bruk kortvarige arbeids-brancher _per del_ for ny funksjon
+ - lever maks et par dager
+2. Beskytt funksjon med ny 'Feature Toggle'
+3. Lag pull-request
+ - merge til master når teamet godkjenner endring
+ - rull ut til produksjon
+4. Aktiver funksjon for teamet i **produksjon**
+5. Test funksjonen
+6. (fiks eventuelle feil / forbedringer)
+7. Aktiver funksjonen gradvis for alle brukere
+8. Følg med på logger, bugs, KPI, osv.
+9. Fjern 'Feature Toggle'
 
 ---
-# Feature toggles oppsummert
-- Unngår "major merges"
-- Lar oss rulle ut funksjoner før de er helt ferdig
- - Lar oss teste tidlig i produksjon
-- Økt kontroll med når en ny funksjon aktiveres
-- Lett å rulle tilbake nye funksjoner
+# Ikke misbruk teknikken!
+- Del opp _funksjoner_ i så små funksjoner som mulig
+- Introduser hver funksjon så for som mulig
+- Få feeback på at funksjonen løser riktig problem på riktig måte
+- Viktig med **hurtig** og **kontinuerlig** feedback på det vi lager!!
+
+---
+# Feature toggles..
+- ..unngår tidkrevende "big bang merges"
+- ..promoterer inkrementell utvikling av funksjoner
+- ..lar oss rulle ut uferdig kode til produksjon
+- ..teste ny funksjonalitet tidlig i produksjon
+- ..gir økt kontroll med når en nye funksjoner aktiveres
+- ..muligjør gradvis utrulling til brukere
+- ..åpner for lynrask tilbakerulling
 
 ---
 # Psst: Unleash
