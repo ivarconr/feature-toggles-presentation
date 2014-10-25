@@ -70,10 +70,36 @@ h1, h2, h3 {
   font-weight: bold;
 }
 
+.silver {
+  color: silver;
+}
+
 .gray {
   color: gray;
 }
 
 .gray a:visited, .gray a {
   color: gray;
-};
+}
+
+.small {
+  font-size: 0.7em;
+}
+
+.large {
+  line-height: 1.5em;
+  font-size: 1.3em;
+}
+
+.img-src {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  font-size: 0.5em;
+  background: black;
+  opacity: 0.8;
+}
+.img-src a, .img-src a:visited {
+  color: silver;
+
+}
