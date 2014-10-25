@@ -69,3 +69,11 @@ h1, h2, h3 {
 .strong {
   font-weight: bold;
 }
+
+.gray {
+  color: gray;
+}
+
+.gray a:visited, .gray a {
+  color: gray;
+};
