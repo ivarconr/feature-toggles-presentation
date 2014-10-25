@@ -51,7 +51,7 @@ class: background-img
 
 
 ---
-# Utfordinger
+# Utfordringer
 - Optimalisert for å få ut små endringer / bugfixes
 - Kan ikke sjekke inn uferdig kode i _master_
 - Det tar tid å utvikle nye funksjoner (1-3 uker)
@@ -85,7 +85,7 @@ class: background-img
 ???
 Ekstra vanskelig å refaktorere med feature branches.
 - rammeverk
-- bibliotekter
+- biblioteker
 - refaktoreringer
 
 ---
@@ -135,7 +135,7 @@ if(unleash.isEnabled("AwesomeFeature")) {
 
 .large[
 - Bruk så få _if_-sjekker som mulig
-- Beskytt ingangang (lenke) til nye UI-komponenter
+- Beskytt inngangen (lenke) til nye UI-komponenter
 - _Nye APIer trenger ikke beskyttelse_
  - eksisterende klienter kjenner ikke til muligheten
 ]
@@ -161,19 +161,19 @@ class: background-img
 - #### For spesifikke brukere
 - #### På angitt server node
 - #### Basert på dato
-- #### Gradivs utrulling
+- #### Gradvis utrulling
 
 ---
 # Økt kontroll
 .large[
 - Hvem får tilgang til en ny funksjon (og når)
-- Gradivs utrulling til alle brukere
+- Gradvis utrulling til alle brukere
 - Lynrask _tilbakerulling_ ved behov
 ]
 
 ???
 - feature toggles => økt kontroll på tilgang
-- kan gradivis innføre den nye funksjonen
+- kan gradvis innføre den nye funksjonen
 - enkelt å rulle tilbake
  - feil eller negativ KPI
 
@@ -209,7 +209,7 @@ class: background-img
 - Inkrementell utvikling av funksjoner
 - Rulle ut uferdig kode til produksjon
 - Teste ny funksjonalitet tidlig i produksjon
-- Kontroll med når nye funksjoner aktiveres
+- Kontroll på når nye funksjoner aktiveres
 - Gradvis utrulling til brukere
 - Lynrask tilbakerulling
 ]
