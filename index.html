@@ -45,9 +45,7 @@ class: background-img
  - bli bygget og enhets-tester kjøres
  - automatisk bli deployet til testmiljøer
  - integrasjonstester blir trigget
- - ny kode kan så deployes til produksjon
-- Alt som sjekkes inn på master: 
-  - _skal potensielt kunne havne i produksjon_
+ - ny kode kan deployes til produksjon
 
 
 ---
@@ -58,6 +56,9 @@ class: background-img
  - flere personer og team
  - flere moduler/applikasjoner 
 - Testmiljøer != produksjon
+
+???
+- firewall i produksjon?
 
 ---
 # Feature Branches
@@ -73,20 +74,28 @@ class: background-img
 class: center, middle
 <img  src="images/pull_request.png" />
 
+???
+Pull request
+- Dt beste med branch & merge
+- Støtte i mange av verktøyene som brukes.
+
 ---
 # Flere funksjoner samtidig
 
 <img class="fullwitdh border" src="images/feature_branch_double.jpg" />
+
+???
+- Økt kompleksitet ved antall samtidige brancher
+
 
 ---
 class: background-img
 <img  src="images/keep-refactoring-and-carry-on.png" />
 
 ???
-Ekstra vanskelig å refaktorere med feature branches.
-- rammeverk
-- biblioteker
-- refaktoreringer
+Ekstra vanskelig å refaktorere når vi har mange samtidig brancher
+- rammeverk og biblioteker
+- utsetter refaktoreringer
 
 ---
 # Feature Branches
@@ -104,6 +113,18 @@ Ekstra vanskelig å refaktorere med feature branches.
 - Vanskelig(ere) å vise frem ny kode før den er merget
 - Egne test-miljøer per branch?
 
+???
+Fordeler:
+- Enkelt og trygt
+- ingenting havner i prod
+- pull requests & code review
+
+Ulemper:
+- dyrt å merge
+- dele ny kode på tvers av brancher
+- frykt å refaktorere kode
+- vise frem, egne testmiljøer?
+
 ---
 class: background-img
 # Feature Toggles
@@ -114,13 +135,14 @@ class: background-img
 ???
 Feature Toggles er en enkel teknikk
 - lar oss jobbe på master-bransjen
-- gjør det mulig å release uferdig kode til produksjon
+- rulle ut 'uferdig' kode til produksjon
 - skjuler uferdig funksjonalitet fra brukeren
-- gjør oss i stand til å teste nye funksjoner i produksjon (uten at brukerene eksponeres)
-- gir oss kontroll på når og hvordan vi ruller ut en ny funksjon til brukerne
+- teste nye funksjoner i produksjon 
+- gir oss kontroll 
+ - når og hvordan ny funksjon rulles ut til brukerne
 
 ---
-# Feature Toggles: Enkle if-tester
+class: middle
 
 ```java
 if(unleash.isEnabled("AwesomeFeature")) {
@@ -130,18 +152,24 @@ if(unleash.isEnabled("AwesomeFeature")) {
 }
 ```
 
+???
+En feature toggle er i grunnen bare en enkel if-test
+
 ---
 # Minimal impact!
 
 .large[
-- Bruk så få _if_-sjekker som mulig
+- Bruk så få ```if statements``` som mulig
 - Beskytt inngangen (lenke) til nye UI-komponenter
 - _Nye APIer trenger ikke beskyttelse_
  - eksisterende klienter kjenner ikke til muligheten
 ]
 
 ???
-
+- Bruk så få ```if statements``` som mulig
+- Beskytt inngangen (lenke) til nye UI-komponenter
+- _Nye APIer trenger ikke beskyttelse_
+ - eksisterende klienter kjenner ikke til muligheten
 
 ---
 class: background-img
@@ -151,17 +179,22 @@ class: background-img
 .img-src[https://www.flickr.com/photos/epsos/5444678656/]
 
 ???
-- Når du ikke trenger en feature toggles lenger skal denne slettes
+- Slett feature toggles når du er ferdig med den.
 - Kostbart å vedlikeholde over tid
-- Så få permanente feature toggles som mulig
+- Hver toggle gir en ny "vei" i applikasjonen din.
+
+- Så få permanente 'feature toggles' som mulig
 
 ---
 # Aktiveringsstrategier
 - #### For alle
 - #### For spesifikke brukere
 - #### På angitt server node
-- #### Basert på dato
+- #### Basert på aktiverings-dato
 - #### Gradvis utrulling
+
+???
+En aktiveringsstragier lar oss bestemme hvem en ny funksjon skal ekspneres for.
 
 ---
 # Økt kontroll
@@ -179,19 +212,18 @@ class: background-img
 
 
 ---
-# Anbefalt arbeidsflyt
+# Arbeidsflyt med Feature Toggles
 
 .large[
-1. Bruk kortvarige arbeids-brancher _per del_ for ny funksjon
-2. Bruk pull-request til å merge
- - merge til master når teamet godkjenner endring
- - rull ut til produksjon
+1. Kortvarige **arbeidsbrancher** for mindre deler til ny funksjon
+2. Bruk pull-request for å merge til master
+ - en bra gjennomgang for teamet.
 3. Aktiver ny funksjon for teamet i **produksjon**
-4. Test den nye funksjonen
-5. .gray[(fiks eventuelle feil / forbedringer)]
+4. Test ny funksjon
+5. .gray[(implementer forbedringer)]
 6. Aktiver funksjonen gradvis for alle brukere
-7. Følg med på logger, bugs, KPI, osv.
-8. **Fjern 'Feature Toggle' fra koden**
+7. Følg med på _logger, bugs, KPIer, osv_
+8. **Slett Feature Toggle'**
 ]
 
 ???
@@ -199,18 +231,19 @@ class: background-img
 - En ny funksjon består typisk av flere mindre oppgaver
 - Abridsbrancher for bruke pull requests!
  - levetid på maks noen dager
+ - Løpende code-reviews med teamet
  - Små pullrequester => enklere å forstå / gi tilbakemleding
 - Firewall åpen i produksjon?
+- Gradvis utrulling til produksjon
 
 ---
 # Feature toggles
 .large[
 - Unngår tidkrevende "big bang merges"
 - Inkrementell utvikling av funksjoner
-- Rulle ut uferdig kode til produksjon
-- Teste ny funksjonalitet tidlig i produksjon
-- Kontroll på når nye funksjoner aktiveres
-- Gradvis utrulling til brukere
+- Integrerer uferdig funksjonalitet
+- Tester ny funksjonalitet tidlig i produksjon
+- Aktiveringsstrategier for gradvis utrulling av ny funksjonalitet
 - Lynrask tilbakerulling
 ]
 
