@@ -40,7 +40,7 @@ class: background-img
 .img-src[https://www.flickr.com/photos/ar88/4102692617/]
 
 ???
-- I FINN bruker vi master branchen som motorvei til prduksjon
+- I FINN ==> master branchen ==> motorvei til prduksjon
 - Kode som sjekkes inn på master:
  - bli bygget og enhets-tester kjøres
  - automatisk bli deployet til testmiljøer
@@ -58,6 +58,8 @@ class: background-img
 - Testmiljøer != produksjon
 
 ???
+- optimaliser for små endringer
+- "ren master"
 - firewall i produksjon?
 
 ---
@@ -75,8 +77,7 @@ class: center, middle
 <img  src="images/pull_request.png" />
 
 ???
-Pull request
-- Dt beste med branch & merge
+- Det beste med branch & merge
 - Støtte i mange av verktøyene som brukes.
 
 ---
@@ -86,7 +87,8 @@ Pull request
 
 ???
 - Økt kompleksitet ved antall samtidige brancher
-
+- dyrt å merge
+- synk underveis.
 
 ---
 class: background-img
@@ -134,7 +136,7 @@ class: background-img
 
 ???
 Feature Toggles er en enkel teknikk
-- lar oss jobbe på master-bransjen
+- lar oss jobbe på master
 - rulle ut 'uferdig' kode til produksjon
 - skjuler uferdig funksjonalitet fra brukeren
 - teste nye funksjoner i produksjon 
@@ -194,7 +196,7 @@ class: background-img
 - #### Gradvis utrulling
 
 ???
-En aktiveringsstragier lar oss bestemme hvem en ny funksjon skal ekspneres for.
+- lar oss bestemme hvem en ny funksjon skal ekspneres for.
 
 ---
 # Økt kontroll
