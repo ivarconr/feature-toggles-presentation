@@ -11,27 +11,122 @@
 class: center, middle inverse
 
 .left.large[
-.silver[unleash] :: verb
+# unleash .silver[:: verb]
 1. _release (a dog) from a leash._
 2. _cause (a strong or violent force) to be released or become unrestrained._
 ]
 
 
 ???
+Unleash - et verktøy for å gjøre feature toggling
+
+---
+class: background-img
+# Feature Toggles
+<img src="../images/Merrydown_Cider Factory.jpg">
+
+.img-src[https://www.flickr.com/photos/howzey/3805038515]
+
+???
+Feature Toggles er en enkel teknikk
+- skille release og deploy av kode
+- integrere uferdige funksjoner på master
+- skjuler uferdig funksjonalitet for brukerene
+- teste nye funksjoner i produksjon 
+- gir oss kontroll 
+ - når og hvordan ny funksjon rulles ut til brukerne
+
+---
+# Hvorfor feature toggles?
+.large[
+- Skille **release** og **deploy** av kode
+- Teste ny funksjonalitet tidlig i produksjon
+- Gradvis utrulling av ny funksjonalitet
+- Lynrask tilbakerulling
+]
+
+
+---
+# Unleash
+.large[
+- Utviklet for å løse feature toggling i FINN
+- Administrasjon av _feature toggles_ i ett verktøy
+- Open source
+]
+
+<br /><br />
+
+.right[
+### https://github.com/finn-no/unleash
+]
+
 
 ---
 class: background-img
 
-# Unleash - X*Teams invovled
-<img src="images/theteam.jpg">
+# Unleash - 1 kick-ass week!
+<img src="images/theteam_names.jpg">
 
 ???
+- Startet allerede i sommer med en POC på ulike teknologier
 - Et samarebid på tvers av team
 - Fra flere team og avdelinger representert
-- UP eier løsningen.
+- Unleash eies av UP 
 
 ---
+# Hva løser Unleash?
+.large[
+- Feature toggling
+- Administrasjon av _feature toggles_ i ett verktøy
+- Aktiveringsstrategier
+]
 
+---
+# Aktiveringsstrategier
+.large[
+- Regler som bestemmer om en _feature toggle_ er aktiv
+ - Basert på bruker
+ - Basert på dato
+ - Basert på servernode
+- Gradivs utrulling av funksjonalitet
+]
+
+---
+# Hva løser IKKE Unleash?
+.large[
+- AB-testing
+- Canary release
+- Business toggles
+]
+
+---
+# Utrullingsplan
+
+** Lukket beta **
+- Utføres i disse dager
+- Ikke feature complete
+- Ytelse og stabilitet
+
+** Release Party - ETA 12. desember **
+- Java-klienten stabil og feature complete
+- Alle kan ta i bruk Unleash
+- Teamet bistår de som trenger hjelp for å komme i gang
+
+.silver[** Veien videre **
+- Tilgangskontroll
+- Traceability
+- Interne FINN-spesifikke strategier
+]
+
+#### https://github.com/finn-no/unleash/milestones
+
+---
+class: middle inverse
+
+# Mer info?
+### HIPCHAT: .silver[unleash]
+### EPOST:   .silver[unleash@finn.no]
+### GITHUB:  .silver[https://github.com/finn-no/unleash]
 
     </textarea>
     <script src="../scripts/remark-latest.min.js" type="text/javascript">
