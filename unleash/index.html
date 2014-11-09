@@ -29,30 +29,51 @@ class: background-img
 
 ???
 Feature Toggles er en enkel teknikk
-- skille release og deploy av kode
+- skille **release** og **deploy** av kode
 - integrere uferdige funksjoner på master
-- skjuler uferdig funksjonalitet for brukerene
-- teste nye funksjoner i produksjon 
-- gir oss kontroll 
- - når og hvordan ny funksjon rulles ut til brukerne
+- teste nye funksjoner tidlig i produksjon 
+- **gir kontroll**
+ - når og for hvem funksjon aktiveres
+ - Gradvis utrulling av ny funksjonalitet
+- *Prioritert initiativ fra TLG*
 
 ---
-# Hvorfor feature toggles?
+# Feature toggles: oppsummert
 .large[
-- Skille **release** og **deploy** av kode
+- Skille **release** og **deploy** av kode¹
 - Teste ny funksjonalitet tidlig i produksjon
 - Gradvis utrulling av ny funksjonalitet
 - Lynrask tilbakerulling
 ]
 
+.bottom[¹ Prioritert initiativ fra TLG]
+
+
+---
+class: background-img
+
+# Unleash - One kick-ass team!
+<img src="images/theteam_names.jpg">
+
+???
+- Denne gjengen gikk sammen for å få på plass en løsning for feature toggling i FINN
+ - Pluss mange flere bidragsytere under veis
+- Startet allerede i sommer med en POC på ulike teknologier
+ - Undersøkte eksisterende løsningen
+ - ingen løste finn sine behov
+- Et samarebid på tvers av team
+- Fra flere team og avdelinger representert
+- Unleash eies av UP 
 
 ---
 # Unleash
 .large[
-- Utviklet for å løse feature toggling i FINN
+- Feature Toggles i FINN
 - Administrasjon av _feature toggles_ i ett verktøy
+- Aktiveringsstrategier
 - Open source
 ]
+
 
 <br /><br />
 
@@ -61,61 +82,53 @@ Feature Toggles er en enkel teknikk
 ]
 
 
----
-class: background-img
-
-# Unleash - 1 kick-ass week!
-<img src="images/theteam_names.jpg">
-
 ???
-- Startet allerede i sommer med en POC på ulike teknologier
-- Et samarebid på tvers av team
-- Fra flere team og avdelinger representert
-- Unleash eies av UP 
+- En løsning for hele finn
+- Hvert team skal slippe å lage sin egen løsning
+- Ett sted for utviklere, vakta osv å sjekke hva som er av/på
+- Utvikles som open source
+ - andre selskaper kan dra nytte av det vi gjør
+ - og ikke minst bidra til en felles løsning.
+- Aktiveringsstrategier lar oss definere regler for hvem og når en funksjon skal være på
+ - dette betyr gradvis utrulling av funlsjonalitet.
 
 ---
-# Hva løser Unleash?
-.large[
-- Feature toggling
-- Administrasjon av _feature toggles_ i ett verktøy
-- Aktiveringsstrategier
-]
+class: middle
 
----
 # Aktiveringsstrategier
 .large[
 - Regler som bestemmer om en _feature toggle_ er aktiv
- - Basert på bruker
+ - Basert på bruker, rolle etc.
  - Basert på dato
- - Basert på servernode
-- Gradivs utrulling av funksjonalitet
+- ** Gradivs utrulling av funksjonalitet**
 ]
 
 ---
 # Hva løser IKKE Unleash?
-.large[
+.large[.large[
 - AB-testing
 - Canary release
 - Business toggles
-]
+]]
 
 ---
 # Utrullingsplan
 
 ** Lukket beta **
-- Utføres i disse dager
-- Ikke feature complete
-- Ytelse og stabilitet
+- In progress .green[✓]
+- PS: ikke feature complete
+- Fokus: ytelse og stabilitet
 
-** Release Party - ETA 12. desember **
+** Release Party - (ETA 12. desember) **
 - Java-klienten stabil og feature complete
-- Alle kan ta i bruk Unleash
-- Teamet bistår de som trenger hjelp for å komme i gang
+- Alle kan ta i bruk Unleashs
 
 .silver[** Veien videre **
 - Tilgangskontroll
 - Traceability
 - Interne FINN-spesifikke strategier
+- Flere klienter
+ - Node
 ]
 
 #### https://github.com/finn-no/unleash/milestones
