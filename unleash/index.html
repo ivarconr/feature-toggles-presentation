@@ -18,7 +18,7 @@ class: center, middle inverse
 
 
 ???
-Unleash - et verktøy for å gjøre feature toggling
+Unleash - en open-source løsning for feature toggling
 
 ---
 class: background-img
@@ -29,15 +29,12 @@ class: background-img
 
 ???
 Feature Toggles er en enkel teknikk
-- skille **release** og **deploy** av funksjonalitet
-- integrere uferdige funksjoner på master
-- teste nye funksjoner tidlig i produksjon 
-- **gir kontroll**
- - Når og for hvem funksjon aktiveres
- - Gradvis utrulling av ny funksjonalitet
-- *Prioritert initiativ fra TLG*
+- Skille mellom **release** og **deploy** av funksjonalitet
+- **Økt kontroll:**
+ - for hvem og når funksjon blir aktiv
+- Gradvis utrulling av ny funksjonalitet
 
----
+<!--
 # Feature toggles: oppsummert
 .large[
 - Skille **release** og **deploy** av funksjonalitet¹
@@ -47,30 +44,37 @@ Feature Toggles er en enkel teknikk
 ]
 
 .bottom[¹ Prioritert initiativ fra TLG]
-
+-->
 
 ---
 class: background-img
 
-# Unleash - One kick-ass team!
+# One kick-ass team!
 <img src="images/theteam_names.jpg">
 
 ???
-- Denne gjengen gikk sammen for å få på plass en løsning for feature toggling i FINN
- - Pluss mange flere bidragsytere under veis
-- Startet allerede i sommer med en POC på ulike teknologier
- - Undersøkte eksisterende løsningen
- - ingen løste finn sine behov
-- Et samarebid på tvers av team
-- Fra flere team og avdelinger representert
-- Unleash eies av UP 
+** Dette er gjengen**
+- En felles løsning for FINN
+- Utforsket eksisterende løsninger 
+ - Interne og eksterne tredjeparts løsningen
+ - Ingen løste finn sine behov
+- Åpen prosess på _Confluence, Yammer, Hipchat og GitHub_
+- **TAKK** til alle som har bidratt i diskusjonen!
+
+ 
+** Et samarbeid på tvers av team**
+- De som skal bruke tjenesten har fått lov å være med å lage den
+- Morsom og insprirende måte å jobbe på
+
+
 
 ---
 # Unleash
 .large[
-- Feature Toggles i FINN
-  - Alle _feature toggles_ i ett verktøy
-- Aktiveringsstrategier
+- Feature toggles i FINN
+ - _feature toggles_ i ett verktøy
+ - en felles robust og stabil klient
+- Unleash _eies_ av UP i FINN
 - Open source
 ]
 
@@ -83,25 +87,30 @@ class: background-img
 
 
 ???
-- En løsning for hele finn
-- Hvert team skal slippe å lage sin egen løsning
-- Ett sted for utviklere, vakta osv å sjekke hva som er av/på
-- Utvikles som open source
+- Endte opp med å lage Unleash
+  - Løser _feature toggles_ for FINN
+- UP eier Unleash i FINN
+- Open source
  - andre selskaper kan dra nytte av det vi gjør
- - og ikke minst bidra til en felles løsning.
-- Aktiveringsstrategier lar oss definere regler for hvem og når en funksjon skal være på
- - dette betyr gradvis utrulling av funlsjonalitet.
+ - andre selskaper kan bidra til en felles løsning
 
 ---
 class: middle
 
 # Aktiveringsstrategier
 .large[
-- ** Regler bestemmer om en _feature toggle_ er aktiv**
+- ** Regler som bestemmer om en _feature toggle_ er aktiv**
  - Basert på bruker, rolle etc.
  - Basert på dato
 - ** Gradivs utrulling av funksjonalitet**
 ]
+
+???
+- det morsomme med feature toggling
+- enkle regler som bestemmer om en funksjon regnes som aktiv
+- gir oss kontroll 
+ - for hvem og når en funksjon blir aktiv
+- gradivis utrulling av funksjoner
 
 ---
 # Hva løser IKKE Unleash?
@@ -111,8 +120,17 @@ class: middle
 - Business toggles
 ]]
 
+???
+- AB testing 
+ - er mer enn bare å skru funksjoner av og på. 
+ - kan være en komponent i din AB-test implementasjon
+- Canary release
+ - rulle ut til noen få noder først
+- Businiess toggles
+ - F.eks: gravide mødre i Oslo skal få denne versjonen.
+
 ---
-# Utrullingsplan
+# Milestones
 
 ** Lukket beta **
 - In progress .green[✓]
@@ -121,7 +139,7 @@ class: middle
 
 ** Release Party - (ETA 12. desember) **
 - Java-klienten stabil og feature complete
-- Alle kan ta i bruk Unleashs
+- Alle kan ta i bruk Unleash
 
 .silver[** Veien videre **
 - Tilgangskontroll
