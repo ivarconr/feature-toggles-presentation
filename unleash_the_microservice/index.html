@@ -15,7 +15,6 @@ class: center, middle inverse
 FINN's open source feature toggle framework
 ]
 
-
 ???
 Unleash - en open-source løsning for feature toggling
 
@@ -30,6 +29,7 @@ class: background-img
 Feature Toggles er en enkel teknikk
 - Skille mellom **release** og **deploy** av funksjonalitet
 - Lar oss integrere uferdig kode på master
+ - Slipper langlevde brancher som blir dyre å integrere
 - Teste nye funksjoner i produksjon 
 - **Økt kontroll:**
  - for hvem og når funksjon blir aktiv
@@ -43,6 +43,38 @@ Feature Toggles er en enkel teknikk
 - Gradvis utrulling av ny funksjonalitet
 - Lynrask tilbakerulling
 ]
+
+---
+# Økt kontroll
+.large[
+- Hvem får tilgang til en ny funksjon (og når)
+- Gradvis utrulling til alle brukere
+- Lynrask _tilbakerulling_ ved behov
+]
+
+???
+- feature toggles => økt kontroll på tilgang
+- kan gradvis innføre den nye funksjonen
+- enkelt å rulle tilbake
+ - feil eller negativ KPI
+
+---
+# Minimal impact!
+
+.large[
+- Bruk så få ```if statements``` som mulig
+- Beskytt inngangen (lenke) til nye UI-komponenter
+- _Nye APIer trenger ikke beskyttelse_
+ - eksisterende klienter kjenner ikke til muligheten
+]
+
+???
+- Bruk så få ```if statements``` som mulig
+- Beskytt inngangen (lenke) til nye UI-komponenter
+- _Nye APIer trenger ikke beskyttelse_
+ - eksisterende klienter kjenner ikke til muligheten
+
+
 
 ---
 # Unleash
@@ -160,6 +192,21 @@ tilbake til den delete finn-klienten.
 
 
 ---
+class: background-img
+# Rydd etter deg!
+<img src="../images/pollution.jpg">
+
+.img-src[https://www.flickr.com/photos/epsos/5444678656/]
+
+???
+- Slett feature toggles når du er ferdig med den.
+- Kostbart å vedlikeholde over tid
+- Hver toggle gir en ny "vei" i applikasjonen din.
+
+- Så få permanente 'feature toggles' som mulig
+
+
+---
 class: inverse 
 
 # Hva løser IKKE Unleash?
@@ -186,7 +233,10 @@ class: inverse
  - clientside
  - serverside
 - Traceability
-- FINN-internal strategies
+- More FINN-internal strategies
+- Server setup
+ - One stable test
+ - One stable prod
 - Clients for other languages 
  - (e.g.: node)
 
