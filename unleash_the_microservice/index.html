@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Unleash the microservice</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="../styles/styles.css">
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle inverse
+
+.large.left[
+# Unleash 
+FINN's open source feature toggle framework
+]
+
+
+???
+Unleash - en open-source løsning for feature toggling
+
+---
+class: background-img
+# Feature Toggles
+<img src="../images/Merrydown_Cider Factory.jpg">
+
+.img-src[https://www.flickr.com/photos/howzey/3805038515]
+
+???
+Feature Toggles er en enkel teknikk
+- Skille mellom **release** og **deploy** av funksjonalitet
+- Lar oss integrere uferdig kode på master
+- Teste nye funksjoner i produksjon 
+- **Økt kontroll:**
+ - for hvem og når funksjon blir aktiv
+- Gradvis utrulling av ny funksjonalitet
+
+---
+# Feature toggles: oppsummert
+.large[
+- Skille **release** og **deploy** av funksjonalitet¹
+- Teste ny funksjonalitet tidlig i produksjon
+- Gradvis utrulling av ny funksjonalitet
+- Lynrask tilbakerulling
+]
+
+---
+# Unleash
+.large[
+- Feature toggles i FINN
+ - _feature toggles_ i ett verktøy
+ - en felles robust og stabil klient
+- Unleash _eies_ av UP i FINN
+- Open source
+]
+
+
+<br /><br />
+
+.right[
+### https://github.com/finn-no/unleash
+]
+
+
+???
+- Endte opp med å lage Unleash
+  - Løser _feature toggles_ for FINN
+- UP eier Unleash i FINN
+- Open source
+ - andre selskaper kan dra nytte av det vi gjør
+ - andre selskaper kan bidra til en felles løsning
+
+---
+class: middle
+
+# Aktiveringsstrategier
+.large[
+- ** Regler som bestemmer om en _feature toggle_ er aktiv**
+ - Basert på bruker, rolle etc.
+ - Basert på dato
+- ** Gradivs utrulling av funksjonalitet**
+]
+
+???
+- det morsomme med feature toggling
+- enkle regler som bestemmer om en funksjon regnes som aktiv
+- gir oss kontroll 
+ - for hvem og når en funksjon blir aktiv
+- gradivis utrulling av funksjoner
+
+---
+# How to get started
+
+(Stash: unleash-client-finn)
+
+```java
+//create a new client
+Unleash unleash = new FinnUnleash();
+
+//check whether a toggle is enabled
+unleash.isEnabled("talent.newAwesomeFeature");
+
+//check toggle with truish-fallback
+unleash.isEnabled("talent.unknwon", true);
+```
+
+---
+# Unleash Admin:
+
+- Define new feature toggles
+- Enable / disable feature toggles
+- Define new strategies
+
+(screenshot)
+
+
+---
+# Custom strategies
+
+Step 1: You have to implement your own strategy.
+
+```java
+public interface Strategy {
+    String getName();
+
+    boolean isEnabled(Map<String, String> parameters);
+}
+```
+
+Step 2: You have to register the strategy definition in Unleash Admin:
+- (screenshot)
+- which parameters does your stratgy require?
+
+PS! Remember to register your custom strategies when you create the unleash instance:
+
+```java
+Unleash unleash = new FinnUnleash(customStrategy1, customStrategy2);
+```
+
+---
+# FINN-internal strategies:
+
+Implemented shared strategies in FINN
+- Default
+- ActiveForUserWithId
+- GradualRolloutRandom
+
+Possible strategies:
+- GradualRollout
+- ByDate
+- ByServerNode
+- ..
+
+We must develop the necessary stratgies together!
+
+???
+Strategier bør oppstå i konkrete prosjekter etter konkrete behov og testet lokalt. 
+Når/hvis vi ser at flere i FINN kunne ha glede av en strategi bør disse commites 
+tilbake til den delete finn-klienten.
+
+
+---
+class: inverse 
+
+# Hva løser IKKE Unleash?
+.large[.large[
+- AB-testing
+- Canary release
+- Business toggles
+]]
+
+???
+- AB testing 
+ - er mer enn bare å skru funksjoner av og på. 
+ - kan være en komponent i din AB-test implementasjon
+- Canary release
+ - rulle ut til noen få noder først
+- Businiess toggles
+ - F.eks: gravide mødre i Oslo skal få denne versjonen.
+
+---
+# Fremtidig funksjonalitet
+
+- Authentication
+- Metrics 
+ - clientside
+ - serverside
+- Traceability
+- FINN-internal strategies
+- Clients for other languages 
+ - (e.g.: node)
+
+---
+class: middle inverse
+
+# Mer info?
+### HIPCHAT: .silver[unleash]
+### EPOST:   .silver[unleash@finn.no]
+### Stash:   .silver[https://git.finn.no/mods/..]
+### GITHUB:  .silver[https://github.com/finn-no/unleash]
+
+    </textarea>
+    <script src="../scripts/remark-latest.min.js" type="text/javascript">
+    </script>
+    <script type="text/javascript">
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
