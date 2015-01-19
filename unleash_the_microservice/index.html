@@ -12,7 +12,7 @@ class: center, middle inverse
 
 .large.left[
 # Unleash 
-FINN's open source feature toggle framework
+_open source feature toggle framework_
 ]
 
 ???
@@ -43,6 +43,24 @@ Feature Toggles er en enkel teknikk
 - Gradvis utrulling av ny funksjonalitet
 - Lynrask tilbakerulling
 ]
+
+---
+# Aktiveringsstrategier
+.large[
+- ** Regler som bestemmer om en _feature toggle_ er aktiv**
+ - bruker
+ - rolle
+ - dato
+ - servernode
+- ** Gradivs utrulling av funksjonalitet**
+]
+
+???
+- det morsomme med feature toggling
+- enkle regler som bestemmer om en funksjon regnes som aktiv
+- gir oss kontroll 
+ - for hvem og når en funksjon blir aktiv
+- gradivis utrulling av funksjoner
 
 ---
 # Økt kontroll
@@ -102,39 +120,44 @@ Feature Toggles er en enkel teknikk
  - andre selskaper kan dra nytte av det vi gjør
  - andre selskaper kan bidra til en felles løsning
 
+
 ---
-class: middle
+# Unleash
 
-# Aktiveringsstrategier
-.large[
-- ** Regler som bestemmer om en _feature toggle_ er aktiv**
- - Basert på bruker, rolle etc.
- - Basert på dato
-- ** Gradivs utrulling av funksjonalitet**
-]
+<img src="images/unleash_system.png" style="width: 100%;">
 
-???
-- det morsomme med feature toggling
-- enkle regler som bestemmer om en funksjon regnes som aktiv
-- gir oss kontroll 
- - for hvem og når en funksjon blir aktiv
-- gradivis utrulling av funksjoner
+
+---
+# Unleash is open source
+
+_**unleash-java-finn** wraps the open-source client with finn specific details:_
+- greenpages
+- finn specific strategies
+- etc..
+
 
 ---
 # How to get started
 
-(Stash: unleash-client-finn)
+
 
 ```java
 //create a new client
 Unleash unleash = new FinnUnleash();
+```
 
+```java
 //check whether a toggle is enabled
 unleash.isEnabled("talent.newAwesomeFeature");
+```
 
-//check toggle with truish-fallback
+```java
+//check toggle with trueish-fallback
 unleash.isEnabled("talent.unknwon", true);
 ```
+
+
+.bottom.small[Stash: https://git.finn.no/projects/MODS/repos/unleash-java-finn/browse]
 
 ---
 # Unleash Admin:
@@ -143,7 +166,12 @@ unleash.isEnabled("talent.unknwon", true);
 - Enable / disable feature toggles
 - Define new strategies
 
-(screenshot)
+.right[
+<img src="images/unleash_admin.png" style="width: 500px;border: 1px solid gray;">
+http://rest.finn.no/unleash/
+]
+
+.bottom.small[]
 
 
 ---
