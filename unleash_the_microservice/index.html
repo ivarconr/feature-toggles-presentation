@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Unleash the microservice</title>
+    <title>Unleash - the micro-service</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" type="text/css" href="../styles/styles.css">
   </head>
@@ -11,8 +11,8 @@
 class: center, middle inverse
 
 .large.left[
-# Unleash 
-_open source feature toggle framework_
+# Unleash
+_open source feature toggles framework_
 ]
 
 ???
@@ -26,33 +26,72 @@ class: background-img
 .img-src[https://www.flickr.com/photos/howzey/3805038515]
 
 ???
-Feature Toggles er en enkel teknikk
-- Skille mellom **release** og **deploy** av funksjonalitet
+Feature toggles 
 - Lar oss integrere uferdig kode på master
- - Slipper langlevde brancher som blir dyre å integrere
+- Unngå brancher som lever i lang tid og blir dyre å integrere
+- Skille mellom **release** og **deploy** av funksjonalitet
 - Teste nye funksjoner i produksjon 
 - **Økt kontroll:**
  - for hvem og når funksjon blir aktiv
 - Gradvis utrulling av ny funksjonalitet
 
 ---
-# Feature toggles: oppsummert
+# More controll
 .large[
-- Skille **release** og **deploy** av funksjonalitet¹
-- Teste ny funksjonalitet tidlig i produksjon
-- Gradvis utrulling av ny funksjonalitet
-- Lynrask tilbakerulling
+- Distinguish **release** and **deploy** of functionality
+- We decide _who_ (and when) a user gets a new feature
+- Test new features early in production
+- Gradual roll-out of new features
+- Lightning fast roll-back
 ]
 
+???
+- skille mellom **release** og **deploy** av funksjonalitet
+- feature toggles => økt kontroll på tilgang
+- Teste nye funksjoner tidlig i produksjon
+- Gradvis utrulling av nye funksjoner i produksjon
+- Rask tilbakerulling ved behov
+ - feil eller negativ KPI
+
 ---
-# Aktiveringsstrategier
+class: middle, large
+
+```java
+if(unleash.isEnabled("AwesomeFeature")) {
+  //do some magic
+} else {
+  //do old boring stuff
+}
+```
+
+
+---
+# Minimal impact!
+
 .large[
-- ** Regler som bestemmer om en _feature toggle_ er aktiv**
- - bruker
- - rolle
- - dato
- - servernode
-- ** Gradivs utrulling av funksjonalitet**
+- Use as few **```if statements```** as possible
+- Protect the **entry point** (the link) for new UI-components
+- _New API's_ does not need protection
+ - (exiting clients does not now them anyway!)
+]
+
+???
+- Bruk så få ```if statements``` som mulig
+- Beskytt inngangen (lenke) til nye UI-komponenter
+- _Nye APIer trenger ikke beskyttelse_
+ - eksisterende klienter kjenner ikke til muligheten
+
+
+---
+# Activation strategies
+.large[
+Regler som bestemmer om en _feature toggle_ er aktiv
+- user
+- role / permission
+- date
+- servernode
+
+** => Gradual rollout of new features**
 ]
 
 ???
@@ -62,47 +101,31 @@ Feature Toggles er en enkel teknikk
  - for hvem og når en funksjon blir aktiv
 - gradivis utrulling av funksjoner
 
----
-# Økt kontroll
-.large[
-- Hvem får tilgang til en ny funksjon (og når)
-- Gradvis utrulling til alle brukere
-- Lynrask _tilbakerulling_ ved behov
-]
 
-???
-- feature toggles => økt kontroll på tilgang
-- kan gradvis innføre den nye funksjonen
-- enkelt å rulle tilbake
- - feil eller negativ KPI
-
----
-# Minimal impact!
-
-.large[
-- Bruk så få ```if statements``` som mulig
-- Beskytt inngangen (lenke) til nye UI-komponenter
-- _Nye APIer trenger ikke beskyttelse_
- - eksisterende klienter kjenner ikke til muligheten
-]
-
-???
-- Bruk så få ```if statements``` som mulig
-- Beskytt inngangen (lenke) til nye UI-komponenter
-- _Nye APIer trenger ikke beskyttelse_
- - eksisterende klienter kjenner ikke til muligheten
 
 
 
 ---
 # Unleash
 .large[
-- Feature toggles i FINN
- - _feature toggles_ i ett verktøy
- - en felles robust og stabil klient
-- Unleash _eies_ av UP i FINN
-- Open source
+- Feature toggles as a µ-service developed by FINN
+ - All our _feature toggles_ in the same tool
+ - A shared and robust client
+- Unleash is _owned_ by UP-team in FINN
+- It's open source
 ]
+
+???
+- Laget av ildsjeler i FINN fordi vi hadde lyst
+- Enkelt å bruke toggles for alle
+- Laget så liten og konsis som mulig 
+ - Grundig design upfront for å sikre konsistent API 
+- Open source
+ - Koster selsvsagt litt ekstra
+ - Gøy for oss som lager det
+ - andre selskaper kan dra nytte av det vi gjør
+ - andre selskaper kan bidra til en felles løsning
+ - Schibsted Ready !!
 
 
 <br /><br />
@@ -116,30 +139,35 @@ Feature Toggles er en enkel teknikk
 - Endte opp med å lage Unleash
   - Løser _feature toggles_ for FINN
 - UP eier Unleash i FINN
-- Open source
- - andre selskaper kan dra nytte av det vi gjør
- - andre selskaper kan bidra til en felles løsning
+
 
 
 ---
-# Unleash
+# Unleash - System overview
 
 <img src="images/unleash_system.png" style="width: 100%;">
 
+???
+Unleash består av tre komponenter:
+1. Selve tjenesten - unleash-service - en slags mikrotjeneste
+2. Unleash Admin - Grensesnittet for å legge til å endre feature toggles
+3. Unleash-client(er) - Klienter-bibliotek for å fasilitere feature toggles i applikasjonene. 
+
 
 ---
-# Unleash is open source
+# Unleash - The client
 
-_**unleash-java-finn** wraps the open-source client with finn specific details:_
-- greenpages
-- finn specific strategies
-- etc..
+.red[_**unleash-java-finn** wraps the open-source unleash-client, adding our own stuff:_]
+
+- Greenpages
+- FINN-specific strategy implementations
+- (in the future: metrics, monitoring)
+
+.bottom.small[Stash: https://git.finn.no/projects/MODS/repos/unleash-java-finn/]
 
 
 ---
 # How to get started
-
-
 
 ```java
 //create a new client
@@ -157,13 +185,14 @@ unleash.isEnabled("talent.unknwon", true);
 ```
 
 
-.bottom.small[Stash: https://git.finn.no/projects/MODS/repos/unleash-java-finn/browse]
+.bottom.small[Stash: https://git.finn.no/projects/MODS/repos/unleash-java-finn/]
 
 ---
-# Unleash Admin:
+# Unleash - Admin
 
 - Define new feature toggles
 - Enable / disable feature toggles
+- Choose and configure activation strategies 
 - Define new strategies
 
 .right[
@@ -173,45 +202,51 @@ http://rest.finn.no/unleash/
 
 .bottom.small[]
 
-
 ---
-# Custom strategies
+# Unleash: Custom activation strategy
 
-Step 1: You have to implement your own strategy.
+.red.strong[Step 1: Implement the custom strategy]
 
 ```java
 public interface Strategy {
     String getName();
-
     boolean isEnabled(Map<String, String> parameters);
 }
 ```
 
-Step 2: You have to register the strategy definition in Unleash Admin:
-- (screenshot)
-- which parameters does your stratgy require?
+.red.strong[Step 2: Define the strategy in Unleash Admin:]
 
-PS! Remember to register your custom strategies when you create the unleash instance:
-
-```java
-Unleash unleash = new FinnUnleash(customStrategy1, customStrategy2);
-```
+<img src="images/unleas_new_strategy.png" style="width: 300px;border: 1px solid gray;" />
 
 ---
-# FINN-internal strategies:
+# Unleash: Custom activation strategy
 
-Implemented shared strategies in FINN
+.red.strong[Step 3: Register custom strategy when you create the unleash instance:]
+
+```java
+Unleash unleash = new FinnUnleash(myCustomStrategy, customStrategy2);
+```
+
+.red.strong[Step 4: Use your activation strategy]
+
+<img src="images/unleash_use_strategy.png" style="width: 600px;border: 1px solid gray;" />
+
+
+---
+# FINN-internal strategies
+
+**Implemented shared strategies in FINN**
 - Default
 - ActiveForUserWithId
 - GradualRolloutRandom
 
-Possible strategies:
+**Possible strategies in the future:**
 - GradualRollout
 - ByDate
 - ByServerNode
 - ..
 
-We must develop the necessary stratgies together!
+.red[**We must develop the necessary stratgies together!**]
 
 ???
 Strategier bør oppstå i konkrete prosjekter etter konkrete behov og testet lokalt. 
@@ -220,8 +255,20 @@ tilbake til den delete finn-klienten.
 
 
 ---
+class: middle, center
+
+Name convention:
+## ArtifactName.<span class="red">ToggleName</span>
+
+???
+Dersom vi følger en enkel navnekonvensjon får vi mange muligheter:
+- enklere å finne alle toggles tilhørende et system
+- sørger for at toggles ikke går over flere artifakter
+- gjør det mulig å implementere "filtrering" i tjenesten på sikt
+
+---
 class: background-img
-# Rydd etter deg!
+# Clean up your own mess!
 <img src="../images/pollution.jpg">
 
 .img-src[https://www.flickr.com/photos/epsos/5444678656/]
@@ -233,28 +280,8 @@ class: background-img
 
 - Så få permanente 'feature toggles' som mulig
 
-
 ---
-class: inverse 
-
-# Hva løser IKKE Unleash?
-.large[.large[
-- AB-testing
-- Canary release
-- Business toggles
-]]
-
-???
-- AB testing 
- - er mer enn bare å skru funksjoner av og på. 
- - kan være en komponent i din AB-test implementasjon
-- Canary release
- - rulle ut til noen få noder først
-- Businiess toggles
- - F.eks: gravide mødre i Oslo skal få denne versjonen.
-
----
-# Fremtidig funksjonalitet
+# Much more to come in the future
 
 - Authentication
 - Metrics 
@@ -267,6 +294,7 @@ class: inverse
  - One stable prod
 - Clients for other languages 
  - (e.g.: node)
+- Command line tool
 
 ---
 class: middle inverse
@@ -274,7 +302,7 @@ class: middle inverse
 # Mer info?
 ### HIPCHAT: .silver[unleash]
 ### EPOST:   .silver[unleash@finn.no]
-### Stash:   .silver[https://git.finn.no/mods/..]
+### Stash:   .silver[https://git.finn.no/projects/MODS/repos/unleash-java-finn/]
 ### GITHUB:  .silver[https://github.com/finn-no/unleash]
 
     </textarea>
