@@ -36,7 +36,7 @@ Feature toggles
 - Gradvis utrulling av ny funksjonalitet
 
 ---
-# More controll
+# Feature toggles - summary
 .large[
 - Distinguish **release** and **deploy** of functionality
 - We decide _who_ (and when) a user gets a new feature
@@ -72,7 +72,7 @@ if(unleash.isEnabled("AwesomeFeature")) {
 - Use as few **```if statements```** as possible
 - Protect the **entry point** (the link) for new UI-components
 - _New API's_ does not need protection
- - (exiting clients does not know them anyway!)
+ - (exisiting clients does not know them anyway!)
 ]
 
 ???
@@ -154,21 +154,46 @@ Unleash består av tre komponenter:
 2. Unleash Admin - Grensesnittet for å legge til å endre feature toggles
 3. Unleash-client(er) - Klienter-bibliotek for å fasilitere feature toggles i applikasjonene. 
 
+---
+# Unleash - Simple API
+
+```GET: http://rest.finn.no/unleash/features```
+```json
+{
+  features: [
+    {
+      name: "App.AwesomeFeature",
+      description: "Makes magic happen",
+      enabled: false,
+      strategy: "MyCustomStrategy",
+      parameters: {
+        aFacyNumber: "42",
+        someString: "Test"
+      }
+    }
+  ]
+}
+```
 
 ---
 # Unleash - The client
+- The robust (and kind of phat) client
+- Local in-memory representation
+- Local persisted last-known representation
+- Poll-based updates via REST (15s default)
 
-.red[_**unleash-java-finn** wraps the open-source unleash-client, adding our own stuff:_]
-
+#### unleash-java-finn
+- wraps the open-source unleash-client, adding our FINN-stuff
 - Greenpages
 - FINN-specific strategy implementations
 - (in the future: metrics, monitoring)
-
-.bottom.small[Stash: https://git.finn.no/projects/MODS/repos/unleash-java-finn/]
+- Stash: https://git.finn.no/projects/MODS/repos/unleash-java-finn/
 
 
 ---
 # How to get started
+
+_(you need the client jar on your classpath)_
 
 ```java
 //create a new client
@@ -231,12 +256,6 @@ Unleash unleash = new FinnUnleash(myCustomStrategy, customStrategy2);
 .red.strong[Step 4: Use your activation strategy]
 
 <img src="images/unleash_use_strategy.png" style="width: 600px;border: 1px solid gray;" />
-
----
-# Unlesh: The robust client
-- Local in-memory representation
-- Local persisted last-known representation
-- Poll-based updates via REST (15s default)
 
 ---
 # FINN-internal strategies
