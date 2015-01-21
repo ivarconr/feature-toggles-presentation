@@ -231,7 +231,7 @@ http://rest.finn.no/unleash/
 .bottom.small[]
 
 ---
-# Unleash: Custom activation strategy
+# Unleash: Custom strategy
 
 .red.strong[Step 1: Implement the custom strategy]
 
@@ -242,18 +242,24 @@ public interface Strategy {
 }
 ```
 
+---
+# Unleash: Custom strategy
+
 .red.strong[Step 2: Define the strategy in Unleash Admin:]
 
 <img src="images/unleas_new_strategy.png" style="width: 300px;border: 1px solid gray;" />
 
 ---
-# Unleash: Custom activation strategy
+# Unleash: Custom strategy
 
 .red.strong[Step 3: Register custom strategy when you create the unleash instance:]
 
 ```java
 Unleash unleash = new FinnUnleash(myCustomStrategy, customStrategy2);
 ```
+
+---
+# Unleash: Custom strategy
 
 .red.strong[Step 4: Use your activation strategy]
 
