@@ -1,6 +1,6 @@
-- Something about about finn
- - Master == highway to producation
- - How many times do we deploy code to producation every day?
+- Something about about FINN
+ - Master == highway to production
+ - How many times do we deploy code to production every day?
  - Should be optimized for getting new code out.
 - Feature branches
  - What it is
@@ -8,6 +8,7 @@
  - Pros & Cons
 - Feature toggles
  - What is it really?
+ - Separate Deploy of Code and Release of featues!
  - Simple code example
  - How to use it.
  - Pros & cons
