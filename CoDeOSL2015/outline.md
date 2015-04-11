@@ -1,0 +1,18 @@
+- Something about about finn
+ - Master == highway to producation
+ - Should be optimized for getting new code out.
+- Feature branches
+ - What it is
+ - Why it slows us down
+ - Pros & Cons
+- Feature toggles
+ - What is it really?
+ - Pros & cons
+- Business toggles
+ - how are these different?
+- Activation Strategies
+ - How does this affect
+- Unleash
+ - Screenshots
+ - How many applications does use it?
+ - How many toggles do we have @ FINN.no right now?
