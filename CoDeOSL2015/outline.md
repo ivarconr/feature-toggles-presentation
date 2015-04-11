@@ -1,5 +1,6 @@
 - Something about about finn
  - Master == highway to producation
+ - How many times do we deploy code to producation every day?
  - Should be optimized for getting new code out.
 - Feature branches
  - What it is
@@ -7,12 +8,22 @@
  - Pros & Cons
 - Feature toggles
  - What is it really?
+ - Simple code example
+ - How to use it.
  - Pros & cons
 - Business toggles
  - how are these different?
+ - Why not using the same system for this?
 - Activation Strategies
- - How does this affect
+ - Benefits?
+ - How does this affect toggles?
+ - Moving from one strategy to next
 - Unleash
- - Screenshots
- - How many applications does use it?
- - How many toggles do we have @ FINN.no right now?
+ - Screenshots?
+ - main focus KISS!
+ - system overview
+ - The stable client
+ - How many of our applications use Unleash?
+ - How many toggles do we have @FINN.no right now?
+ - Which strategies have we implemented for FINN?
+ - Applications can implement their own strategies at will.
