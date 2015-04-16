@@ -11,10 +11,13 @@
  - Separate Deploy of Code and Release of featues!
  - Simple code example
  - How to use it.
+ - "One danger with feature toggles is an accidental exposure"
  - Pros & cons
 - Business toggles
  - how are these different?
  - Why not using the same system for this?
+ - BT => permanent feature of the application
+ - Harder to test => All combinations are permanent part of the app
 - Activation Strategies
  - Benefits?
  - How does this affect toggles?
