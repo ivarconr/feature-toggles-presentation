@@ -12,8 +12,19 @@ class: center, middle, inverse
 
 # Unleash your features gradually
 
-### Ivar Conradi Østhus
-#### Lead Developer, FINN.no
+.small[
+_At FINN.no we are 140 developers deploying code to production multiple times a
+day. We have a few web applications and a few hundred running micro-services in
+production and integrate code in production even before new features are ready
+for the end user. And when the feature is complete we gradually roll out the
+new feature to our end users. This allows us to verify the performance of the
+new feature and that it actually solves the user problem it targets. In this
+talk I will briefly introduce the feature toggle technique in general and how
+this allows us to separate deploy and release of new features. I will also
+introduce Unleash, an open source feature toggle system, we developed to solve
+this issue._]
+
+#### Ivar Conradi Østhus <br /> Lead Developer, FINN.no
 
 <table class="bottom">
   <tr>
@@ -26,6 +37,365 @@ class: center, middle, inverse
   </tr>
 </table>
 ---
+class: background-img
+
+# master-branch == highway to production
+<img src="images/highway.jpg">
+
+.img-src[https://www.flickr.com/photos/ar88/4102692617/]
+
+???
+- In FINN -> master branch => highway to production.
+- Everything we check in to master:
+ - Will be built and integration test executed
+ - Will be deployed to test-environments
+ - Intgration tests will be executed
+ - And new code will be ready to be deployed to production
+
+---
+
+# Some details about our setup
+
+- We have about **140 developers**
+- **~385 deployable** projects
+- **~600 new artifacts** deployed to production every week
+- We have a custom built pipeline system to manage all this.
+
+---
+# ...but not all changes are small
+- Some features requires more effort to be built
+ - days, weeks, months to be completed
+ - multiple teams
+ - multiple applications/services
+- Uncompleted code can not be on master
+  - We can not expose uncomplete features to our users
+
+---
+# Feature branches
+<img class="fullwitdh border" src="images/feature_branch_simple.jpg" />
+- The traditional way to isolate new code
+- Postpone integration
+
+???
+- a simple technique
+- seperate branch for new features
+- New code will not hit production before you are ready.
+
+---
+class: center, middle
+<img  src="images/pull_request.png" style="width:50%;" />
+
+???
+- Pull Request => the best thing about branch and merge approach!
+- Good support in many common tools:
+ - GitHub
+ - Stash
+ - etc.
+
+---
+# Concurrent branches
+
+<img class="fullwitdh border" src="images/feature_branch_double.jpg" />
+
+???
+ - Increased complexity with multiple branches
+ - expensive to merge
+ - We can reduse this by activley cost by syncing changes on master
+
+---
+class: background-img
+<img  src="images/keep-refactoring-and-carry-on.png" />
+
+???
+Very hard to refactor the code when multiple concurrent branches exists
+- framweworks and libraries
+- "let refactor later!"
+
+---
+# Feature Branches - Summary
+
+**Pros:**
+- Safe to commit code in sperate branch
+- No code will hit production before you are ready
+- Easy to test new stuff without affecting others
+- Code review via _pull-requests_
+
+**Cons:**
+- The merge itself can be very costly/hard to merge
+- Difficult to share new code across banches
+- Fear of refactoring shared code (frameworks / libs)
+- Difficult to present your new features
+ - (Seperate test-envs per branch?)
+
+???
+Pros:
+- Simple and safe
+- No code hits production before you merge
+- pull requests & code review
+
+Cons:
+- expensive to merge
+- Difficult to share new code across banches
+- Fear of refactoring
+- Difficult to present your new features
+
+---
+class: background-img
+# Feature Toggles
+<img src="images/Merrydown_Cider Factory.jpg">
+
+.img-src[https://www.flickr.com/photos/howzey/3805038515]
+
+???
+Feature Toggles is a simple technique
+- allows us to work directly on master
+- roll-out 'uncomplete' code to production
+- hides uncomplete functionality from the user
+- allows us to test new features in productin
+- sperates deploy and release of new features
+- Gives us controll:
+ - when and how new featutes will be rolled out to our users.
+
+-
+---
+# Feature toggles - summary
+.large[
+- Distinguish **release** and **deploy** of functionality
+- We decide _who_ (and when) a user gets a new feature
+- Test new features early in production
+- Gradual roll-out of new features
+- Lightning fast roll-back
+]
+
+
+---
+class: middle
+
+```java
+if(unleash.isEnabled("AwesomeFeature")) {
+ //do some magic
+} else {
+ //do old boring stuff
+}
+```
+
+???
+A feature toggle is just a simple enkel if-test
+
+
+---
+# Minimal impact!
+
+.large[
+- Use as few **```if statements```** as possible
+- Protect the **entry point** (the link) for new UI-components
+- _New API's_ does not need protection
+ - (exisiting clients does not know them anyway!)
+]
+
+???
+- Use as few ```if statements``` as possible
+- Protect the entry point (link) for new UI-components
+- _New APIs does not need protection_
+ - existing clients does not know the capability
+
+---
+class: background-img
+# Clean up your mess!
+<img src="images/pollution.jpg">
+
+.img-src[https://www.flickr.com/photos/epsos/5444678656/]
+
+???
+The plumbing and scaffolding logic to support branching in code becomes a nasty
+form of technical debt, from the moment each feature switch is introduced.
+Feature flags make the code more fragile and brittle, harder to test, harder to
+understand and maintain, harder to support, and less secure.
+
+
+---
+# Clean up your mess!
+- A feature toggle is technical depth from the moment it is created
+- Review flags often
+- Delete feature toggles when you are finished with them
+ - Very costly to maintain over team
+ - Represent a different "path" in your application
+- Avvoid permanent 'feature toggles' when possible
+
+---
+# Avvoid feature toggles if you can!
+
+- A toggle in itself is technical depth when it is created
+- A new feature is a risk until it is in use by real users.
+- Try to split up features first, only use feature toggles if necessary.
+
+"Release toggles are supposed to make it easier and safer to push code out.
+You can push code out only to a limited number of users to start, reducing
+the impact of problems, or dark launch features incrementally, carefully
+assessing added performance costs as you turn on some of the logic behind
+the scenes, or run functions in parallel. And you can roll-back quickly by
+turning off features or optional behaviour if something goes wrong or if
+the system comes under too much load.
+"
+
+---
+# Activation strategies
+
+
+### Responsible to decide whether a feature is active or not.
+### Allows us to decide for _who_ and _when_ a new feature should be active.
+
+???
+e.g.
+- activate features only for specific users,
+- active for specific client IPs
+- active at a specified time.
+
+---
+# Activation strategies: examples
+
+- Active for everyone
+- Active for specific users
+- Actove for specific client IPs
+- Active on specific server nodes
+- Active after a specific date
+- Gradual Rollout to a percentage of our users
+
+(
+- basic on/off
+- user
+- role / permission
+- date
+- servernode
+)
+
+---
+# Activation strategies
+.large[
+Rules that decides when a _feature toggle_ is active
+- basic on/off
+- user
+- role / permission
+- date
+- servernode
+
+** => Gradual rollout of new features**
+
+
+
+---
+# Increased controll
+.large[
+- Who gets a new feature (and when)
+- Graduall rollout to users
+- Lightning fast rollback
+]
+
+???
+- feature toggles => increased controll of access to new feature
+- can gradually roll out our new features
+- very simple to roll back features
+ - if we discover errors
+ - if the new feature is not perfomring
+
+---
+- Summary of toggles
+- Pros and Cons toggles
+- avvoid them if you can!
+
+---
+# Unleash
+.large[
+- Feature toggles as a µ-service developed by FINN
+ - All our _feature toggles_ in the same tool
+ - A shared and robust client
+- A cross team effort in FINN
+- It's open source
+]
+
+#### GitHub: https://github.com/finn-no/unleash
+
+???
+- We started out with multiple simple toggle systems in FINN
+- Configuration files, database-tables etc.
+- Fairly general issue
+- Wanted to have all toggles in one place for simplicity
+- Make it dead simple for developers to take advantage of feature toggles.
+- Right now we have XXX toggles in FINN.
+
+Mere:
+- Laget av ildsjeler i FINN fordi vi hadde lyst
+- Enkelt å bruke toggles for alle
+- Laget så liten og konsis som mulig
+ - Grundig design upfront for å sikre konsistent API
+- Open source
+ - Koster selsvsagt litt ekstra
+ - Gøy for oss som lager det
+ - andre selskaper kan dra nytte av det vi gjør
+ - andre selskaper kan bidra til en felles løsning
+ - Schibsted Ready !!
+
+
+
+---
+# Unleash - System overview
+
+<img src="images/unleash_system.png" style="width: 100%;">
+
+???
+Unleash conists of three parts:
+1. unleash-service - a simple micro-service
+2. Unleash Admin - Dashboard for create and update feature toggles
+3. Unleash-clients(er) - Client-library for using feature toggling
+in the applications.
+
+---
+# Unleash - Admin
+
+- Define new feature toggles
+- Enable / disable feature toggles
+- Choose and configure activation strategies
+- Define new strategies
+
+
+.right[
+<img src="images/unleash_admin.png" style="width: 500px;border: 1px solid gray;">
+]
+
+---
+# Unleash - The client
+- The robust client
+- Local in-memory representation
+- Local persisted last-known representation
+- Poll-based updates via REST (15s default)
+- Multiple implementations:
+ - Java Client - https://github.com/finn-no/unleash-client-java
+ - Node Client - https://github.com/finn-no/unleash-client-node
+
+???
+- The robust, and kind of **fat**, client
+
+
+---
+# Life cycle of a feature toggle
+
+1. Start working on a new feature (disabled in production)
+2. Enable the new feature for the team working on it
+3. Enable the feature for all @FINN.no
+4. Enable the feature to a percentage of the users
+5. Enable the feature for everyone
+6. **Delete the feature toggle.**
+
+???
+This lifecycle is possible by just changing the activation strategy.
+
+---
+class: middle inverse
+
+# More info?
+
+### GITHUB:  .silver[https://github.com/finn-no/unleash]
+
 
     </textarea>
     <script src="../scripts/remark-latest.min.js" type="text/javascript">

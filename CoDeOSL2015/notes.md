@@ -20,6 +20,7 @@ assessing added performance costs as you turn on some of the logic behind
 the scenes, or run functions in parallel. And you can roll-back quickly by
 turning off features or optional behaviour if something goes wrong or if
 the system comes under too much load.
+
 => dette får man ikke til med feature brancher! All or nothing approach!
 
 
