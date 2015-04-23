@@ -112,6 +112,10 @@ h1, h2, h3 {
   font-size: 1.3em;
 }
 
+.large pre {
+  line-height: 1.0em;
+}
+
 .img-src {
   position: absolute;
   bottom: 5px;
@@ -122,5 +126,11 @@ h1, h2, h3 {
 }
 .img-src a, .img-src a:visited {
   color: silver;
+}
 
+.theme {
+  position: absolute;
+  z-index: 1000;
+  top: 0;
+  right: 0;
 }

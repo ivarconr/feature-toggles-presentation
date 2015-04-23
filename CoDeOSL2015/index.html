@@ -8,6 +8,12 @@
   <body>
     <textarea id="source">
 
+layout: true
+<div class="theme">
+  <img src="images/codeoslo2015.png" style="width: 100px;" />
+</div>
+
+---
 class: center, middle, inverse
 
 # Unleash your features gradually
@@ -63,7 +69,7 @@ class: background-img
 ---
 class: middle, center, inverse
 
-# The master highway works well for small changes!
+# The master highway works well for <br /> small changes!
 
 ???
 - bugfixes
@@ -79,13 +85,12 @@ class: middle, center, inverse
 ---
 # Feature branches
 <img class="fullwitdh border" src="images/feature_branch_simple.jpg" />
-- The traditional way to isolate new code
-- Postpone integration
 
 ???
-- a simple technique
-- seperate branch for new features
+- The traditional way to isolate new code
+- A seperate branch for every new features
 - New code will not hit production before you are ready.
+- Delays the integration cost
 
 ---
 class: center, middle
@@ -122,21 +127,23 @@ Very hard to refactor the code when multiple concurrent branches exists
 
 **Pros:**
 - Safe to commit code in sperate branch
-- No code will hit production before you are ready
-- Easy to test new stuff without affecting others
+- No code will hit production before it is merged
+- High degree of code isolation
 - Code review via _pull-requests_
 
 **Cons:**
-- The merge itself can be very hard and costly
+- The *merge itself* can be very hard and costly!
 - Difficult to share new code across banches
 - Fear of refactoring shared code (frameworks / libs)
-- Difficult to present your new features
- - (Seperate test-envs per branch?)
+- How do we know that multiple features works well together?
+- Continous integration, testing, demonstration difficult
+
 
 ???
 Pros:
 - Simple and safe
 - No code hits production before you merge
+- Easy to test new stuff without affecting others
 - pull requests & code review
 
 Cons:
@@ -144,6 +151,7 @@ Cons:
 - Difficult to share new code across banches
 - Fear of refactoring
 - Difficult to present your new features
+- How do we know that multiple features works well together
 
 ---
 class: background-img
@@ -163,31 +171,47 @@ Feature Toggles is a simple technique
 - Gives us controll:
  - when and how new featutes will be rolled out to our users.
 
--
+
 ---
-# Feature toggles - summary
+class: middle
+
 .large[
+```java
+if(unleash.isEnabled("AwesomeFeature")) {
+//do some magic
+} else {
+//do old boring stuff
+}
+```
+]
+
+---
+(hidden)
+# Feature toggles - summary
+
 - Distinguish **release** and **deploy** of functionality
 - We decide _who_ gets (and when) a new feature
 - Test new features early in production
 - Gradual roll-out of new features
 - Lightning fast roll-back
-]
 
-##  Using flags and conditional statements to offer different experiences to different users or to turn on code
+
+###  Using flags and conditional statements to offer different experiences to different users or to turn on code
 
 ---
-# Decoupling **deployment** of code and **release** of new features
+class: inverse, center, middle
 
-Decoupling the deployment from the release helps to achieve the zero-downtime
-release. With Zero-downtime release, switching user from one release
-to another happens instantaneously
+# Decoupling <br /> .red[**deployment**] of code <br /> and <br /> .green[**release**] of new features
 
-It also helps to instantaneously rollback to previous release when required.
 
-This decoupling also enables dev and ops teams to deploy new versions of
-application continuously, completely independent of the decision as to
-which features are available to which users.
+???
+- helps to achieve the zero-downtime release.
+- We can switch user from one version to the next
+- enables developers to deploy new versions of application continuously
+- completely independent of the decision as to which features are available
+to which users.
+- instantaneously rollback to previous release when required.
+
 
 ---
 # selective release
@@ -196,16 +220,6 @@ which features are available to which users.
 - detect problems before they get big
 - test things on early users and react to responses.
 
----
-class: middle
-
-```java
-if(unleash.isEnabled("AwesomeFeature")) {
- //do some magic
-} else {
- //do old boring stuff
-}
-```
 
 ???
 A feature toggle is just a simple enkel if-test
@@ -335,6 +349,23 @@ the system comes under too much load.
  - if we discover errors
  - if the new feature is not perfomring
 
+ ---
+ class: center
+ # Life cycle of a feature toggle
+
+ <img class="border" style="width: 60%;" src="images/feature_toggle_lifecycle.jpg" />
+
+ ???
+
+ This lifecycle by just changing the activation strategy.
+
+
+ 1. Start working on a new feature (disabled in production)
+ 2. Enable the new feature for the team working on it
+ 3. Enable the feature to a percentage of the users
+ 4. Enable the feature for everyone
+ 5. **Delete the feature toggle.**
+
 ---
 - Summary of toggles
 - Pros and Cons toggles
@@ -358,6 +389,20 @@ the system comes under too much load.
 thus:
 Feature Flags need to be Short Lived
 - the main purpose of toggles is to perform release with minimum risk, once release is complete toggles need to be removed.
+
+
+---
+class: background-img
+# No silver bullets!
+<img src="images/silver_bullet.jpg">
+
+.box[
+- one
+- two
+]
+
+.img-src[https://www.flickr.com/photos/eschipul/4160817135]
+
 
 ---
 # Unleash
@@ -405,7 +450,9 @@ Unleash conists of three parts:
 3. Unleash-clients(er) - Client-library for using feature toggling
 in the applications.
 
+
 ---
+
 # Unleash :: The Admin Panel
 
 - Define new feature toggles
@@ -432,34 +479,6 @@ in the applications.
 - The robust, and kind of **fat**, client
 
 
----
-class: center
-# Life cycle of a feature toggle
-
-<img class="border" style="width: 60%;" src="images/feature_toggle_lifecycle.jpg" />
-
-???
-
-This lifecycle by just changing the activation strategy.
-
-
-1. Start working on a new feature (disabled in production)
-2. Enable the new feature for the team working on it
-3. Enable the feature to a percentage of the users
-4. Enable the feature for everyone
-5. **Delete the feature toggle.**
-
----
-class: background-img
-# No silver bullets!
-<img src="images/silver_bullet.jpg">
-
-.box[
-- one
-- two
-]
-
-.img-src[https://www.flickr.com/photos/eschipul/4160817135]
 
 ---
 class: middle inverse
@@ -469,11 +488,14 @@ class: middle inverse
 ### GITHUB:  .silver[https://github.com/finn-no/unleash]
 
 
+
     </textarea>
     <script src="../scripts/remark-latest.min.js" type="text/javascript">
     </script>
     <script type="text/javascript">
       var slideshow = remark.create();
     </script>
+
+
   </body>
 </html>

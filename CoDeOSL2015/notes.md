@@ -32,3 +32,34 @@ going on in production.
 - Review flags often,
 - Once a feature is part of mainline, be ruthless about getting it out of the code base as soon as it isn't used or needed any more.
 - Recognize and account for the costs of using feature flags, especially long-lived business logic branching in code.
+
+
+# Notes:
+- use short lived issue branches or personal branches instead!
+- use pull requests!
+
+
+Feature toggles:
+- Hide unfinsihed features from users
+- separate deployment and release of features
+- Fearless deployment
+- No big bang releases
+
+Feature toggles:
+testing in live environment with live data
+- verify new implementations
+- dev != prod!
+
+
+# feature branches
+
+cons:
+- We cannot know whether all those separately developed features work well
+together until the merge is done and all the unit, functional, integration
+and manual tests are run.
+- The idea of Continuous Integration is to detect problems as soon as possible
+
+
+If there would be only one branch, we could do continuous integration but the
+release problems that were solved with feature branches would come back to
+haunt us.
