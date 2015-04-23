@@ -9,8 +9,8 @@ h1, h2, h3 {
   font-weight: normal;
 }
 
-.remark-code, .remark-inline-code { 
-  font-family: 'Ubuntu Mono'; 
+.remark-code, .remark-inline-code {
+  font-family: 'Ubuntu Mono';
 }
 
 .background-img img {
@@ -34,6 +34,18 @@ h1, h2, h3 {
   right: 0;
   top: 10px;
 }
+
+.background-img .box {
+  position: absolute;
+  top: 200px;
+  left: 10px;
+  color: #000000;
+  z-index: 1;
+  background-color: #fff;
+  opacity: 0.8;
+  padding-right: 20px;
+}
+
 
 .fullwitdh {
   width: 100%;

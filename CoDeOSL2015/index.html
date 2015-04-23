@@ -44,32 +44,38 @@ class: background-img
 
 .img-src[https://www.flickr.com/photos/ar88/4102692617/]
 
+.box[
+- **~140 developers**
+- **~385 deployable** projects
+- **~650 artifacts** deployed weekly (prod)
+]
+
 ???
-- In FINN -> master branch => highway to production.
+- In FINN -> treat master branch as highway to production.
 - Everything we check in to master:
  - Will be built and integration test executed
  - Will be deployed to test-environments
  - Intgration tests will be executed
  - And new code will be ready to be deployed to production
 
+(We have a custom built pipeline system to manage all this.)
+
 ---
+class: middle, center, inverse
 
-# Some details about our setup
+# The master highway works well for small changes!
 
-- We have about **140 developers**
-- **~385 deployable** projects
-- **~600 new artifacts** deployed to production every week
-- We have a custom built pipeline system to manage all this.
+???
+- bugfixes
+- minor adjustments
 
 ---
 # ...but not all changes are small
-- Some features requires more effort to be built
+- **Some features requires more effort to be built**
  - days, weeks, months to be completed
  - multiple teams
  - multiple applications/services
-- Uncompleted code can not be on master
-  - We can not expose uncomplete features to our users
-
+- **Unfinished features should not be exposed to end users!**
 ---
 # Feature branches
 <img class="fullwitdh border" src="images/feature_branch_simple.jpg" />
@@ -121,7 +127,7 @@ Very hard to refactor the code when multiple concurrent branches exists
 - Code review via _pull-requests_
 
 **Cons:**
-- The merge itself can be very costly/hard to merge
+- The merge itself can be very hard and costly
 - Difficult to share new code across banches
 - Fear of refactoring shared code (frameworks / libs)
 - Difficult to present your new features
@@ -149,8 +155,9 @@ class: background-img
 ???
 Feature Toggles is a simple technique
 - allows us to work directly on master
-- roll-out 'uncomplete' code to production
-- hides uncomplete functionality from the user
+- roll-out 'unfinished' code to production
+- hides unfinished functionality from the user
+- reducing risk associated with large change
 - allows us to test new features in productin
 - sperates deploy and release of new features
 - Gives us controll:
@@ -161,12 +168,33 @@ Feature Toggles is a simple technique
 # Feature toggles - summary
 .large[
 - Distinguish **release** and **deploy** of functionality
-- We decide _who_ (and when) a user gets a new feature
+- We decide _who_ gets (and when) a new feature
 - Test new features early in production
 - Gradual roll-out of new features
 - Lightning fast roll-back
 ]
 
+##  Using flags and conditional statements to offer different experiences to different users or to turn on code
+
+---
+# Decoupling **deployment** of code and **release** of new features
+
+Decoupling the deployment from the release helps to achieve the zero-downtime
+release. With Zero-downtime release, switching user from one release
+to another happens instantaneously
+
+It also helps to instantaneously rollback to previous release when required.
+
+This decoupling also enables dev and ops teams to deploy new versions of
+application continuously, completely independent of the decision as to
+which features are available to which users.
+
+---
+# selective release
+
+- gradual roll-out
+- detect problems before they get big
+- test things on early users and react to responses.
 
 ---
 class: middle
@@ -291,6 +319,15 @@ Rules that decides when a _feature toggle_ is active
 - Lightning fast rollback
 ]
 
+Release toggles are supposed to make it easier and safer to push code out.
+You can push code out only to a limited number of users to start, reducing
+the impact of problems, or dark launch features incrementally, carefully
+assessing added performance costs as you turn on some of the logic behind
+the scenes, or run functions in parallel. And you can roll-back quickly by
+turning off features or optional behaviour if something goes wrong or if
+the system comes under too much load.
+
+
 ???
 - feature toggles => increased controll of access to new feature
 - can gradually roll out our new features
@@ -303,10 +340,29 @@ Rules that decides when a _feature toggle_ is active
 - Pros and Cons toggles
 - avvoid them if you can!
 
+
+### Pros
+- making merge problems go away
+- eliminating the costs of maintaining and supporting long-lived branches.
+- reduce deployment risk
+- easy and fast rollback of features if problems are detected
+-
+
+### Cons
+- feature toggles are technical depth
+- makes the code more fragile
+- harder to test
+- harder to understand and maintain, harder to support
+
+
+thus:
+Feature Flags need to be Short Lived
+- the main purpose of toggles is to perform release with minimum risk, once release is complete toggles need to be removed.
+
 ---
 # Unleash
 .large[
-- Feature toggles as a µ-service developed by FINN
+- Feature toggles framework, developed by FINN.no
  - All our _feature toggles_ in the same tool
  - A shared and robust client
 - A cross team effort in FINN
@@ -338,7 +394,7 @@ Mere:
 
 
 ---
-# Unleash - System overview
+# Unleash :: System overview
 
 <img src="images/unleash_system.png" style="width: 100%;">
 
@@ -350,7 +406,7 @@ Unleash conists of three parts:
 in the applications.
 
 ---
-# Unleash - Admin
+# Unleash :: The Admin Panel
 
 - Define new feature toggles
 - Enable / disable feature toggles
@@ -363,7 +419,7 @@ in the applications.
 ]
 
 ---
-# Unleash - The client
+# Unleash :: The Client
 - The robust client
 - Local in-memory representation
 - Local persisted last-known representation
@@ -377,17 +433,33 @@ in the applications.
 
 
 ---
+class: center
 # Life cycle of a feature toggle
+
+<img class="border" style="width: 60%;" src="images/feature_toggle_lifecycle.jpg" />
+
+???
+
+This lifecycle by just changing the activation strategy.
+
 
 1. Start working on a new feature (disabled in production)
 2. Enable the new feature for the team working on it
-3. Enable the feature for all @FINN.no
-4. Enable the feature to a percentage of the users
-5. Enable the feature for everyone
-6. **Delete the feature toggle.**
+3. Enable the feature to a percentage of the users
+4. Enable the feature for everyone
+5. **Delete the feature toggle.**
 
-???
-This lifecycle is possible by just changing the activation strategy.
+---
+class: background-img
+# No silver bullets!
+<img src="images/silver_bullet.jpg">
+
+.box[
+- one
+- two
+]
+
+.img-src[https://www.flickr.com/photos/eschipul/4160817135]
 
 ---
 class: middle inverse
