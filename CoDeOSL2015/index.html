@@ -290,9 +290,11 @@ Rules that decides when a _feature toggle_ is active
 
 # Increased controll
 .large[
-- Who gets a new feature (and when)
-- Graduall rollout to users
-- Lightning fast rollback
+- Allows us to **test** the new feature on a limited group
+- **Verify** that the new feature solves real user problems
+- Lightning fast **rollback** if problems are detected
+- **Iterate** the new feature to make it better
+
 ]
 
 ???
@@ -422,34 +424,6 @@ This lifecycle by just changing the activation strategy.
 5. **Delete the feature toggle.**
 
 ---
-## Feature toggles - summary
-
-### Pros
-- No merge problems
-- Allows us to deploy our code often
-- Decoupling deployment and release
-- Safer to refactor code on master branch
-- Lightning fast rollback if problems are detected
-- Selective release via activation strategies
-- **Unleash our features gradually!**
-
-### Cons
-- Feature toggles are technical depth
-- Accidential exposure of unfinished features
-  - can be a security risk
-- Testing becomes harder
-- The code will be more fragile and harder to understand
-- Long lived toggles are very costly!
-
-
-???
-- the main purpose of toggles is to perform release with minimum risk, once release is complete toggles need to be removed.
-- Feature Flags need to be Short Lived
-- eliminating the costs of maintaining and supporting long-lived branches.
-
-
-
----
 
 # Unleash
 
@@ -528,13 +502,39 @@ in the applications.
 - The robust, and kind of **fat**, client
 
 ---
+## Feature toggles - summary
+
+#### Pros
+- No merge problems
+- Allows us to deploy our code often
+- Decoupling deployment and release
+- Safer to refactor code on master branch
+- Lightning fast rollback if problems are detected
+- Selective release via activation strategies
+- Iterate and improve new features
+
+#### Cons
+- Feature toggles are technical depth
+- Accidential exposure of unfinished features
+  - can be a security risk
+- Testing becomes harder
+- The code will be more fragile and harder to understand
+- Long lived toggles are very costly!
+
+
+???
+- the main purpose of toggles is to perform release with minimum risk, once release is complete toggles need to be removed.
+- Feature Flags need to be Short Lived
+- eliminating the costs of maintaining and supporting long-lived branches.
+
+---
 
 # You should still use branches!
 
 .large[
-- Not complete features!
-- Short lived
-- Pull requests and review process
+- But not for complete features!
+- They should be short lived
+- And you should use pull requests to get a good review process with your team
 ]
 
 ---
@@ -544,7 +544,8 @@ class: inverse, center, middle
 # and
 # .green[unleash your features gradually]
 
-### (remember to clean up your mess!)
+<br /<br />
+#### (remember to clean up your mess!)
 
 
 
