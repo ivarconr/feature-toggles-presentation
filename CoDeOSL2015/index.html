@@ -82,7 +82,9 @@ class: middle, center, inverse
  - days, weeks, months to be completed
  - multiple teams
  - multiple applications/services
-- **Unfinished features should not be exposed to end users!**
+- **Unfinished features**
+ - can not be exposed to end users!
+ - can not block the master branch!
 ---
 # Feature branches
 <img class="fullwitdh border" src="images/feature_branch_simple.jpg" />
@@ -313,8 +315,14 @@ the system comes under too much load.
  - if we discover errors
  - if the new feature is not performing
 
+---
+class: inverse, center, middle
 
+# production ≠ development
 
+???
+Feature toggles allows us to test new features in production
+with real users and real data.
 
 ---
 class: background-img
@@ -502,6 +510,14 @@ in the applications.
 - The robust, and kind of **fat**, client
 
 ---
+class: center, middle, inverse
+# Unleash is open source
+
+Feel free to use it, contribute and suggest improvements!
+
+#### https://github.com/finn-no/unleash
+
+---
 ## Feature toggles - summary
 
 #### Pros
@@ -512,6 +528,7 @@ in the applications.
 - Lightning fast rollback if problems are detected
 - Selective release via activation strategies
 - Iterate and improve new features
+- Test new features in production
 
 #### Cons
 - Feature toggles are technical depth
@@ -523,7 +540,7 @@ in the applications.
 
 
 ???
-- the main purpose of toggles is to perform release with minimum risk, 
+- the main purpose of toggles is to perform release with minimum risk,
 once release is complete toggles need to be removed.
 - Feature Flags need to be Short Lived
 - eliminating the costs of maintaining and supporting long-lived branches.
@@ -541,7 +558,7 @@ once release is complete toggles need to be removed.
 ---
 class: inverse, center, middle
 
-# Use feature toggles to .red[reduce risk]
+# use feature toggles to .red[reduce risk]
 # and
 # .green[unleash your features gradually]
 
@@ -559,6 +576,7 @@ class: middle inverse
 ### Resources used:
 .small[
 - https://github.com/finn-no/unleash
+- https://github.com/ivarconr/feature-toggles-presentation
 - http://martinfowler.com/bliki/FeatureToggle.html
 - http://swreflections.blogspot.no/2014/08/feature-toggles-are-one-of-worst-kinds.html
 - http://technologyconversations.com/2014/08/26/feature-toggles-feature-switches-or-feature-flags-vs-feature-branches/
