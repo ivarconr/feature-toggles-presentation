@@ -136,6 +136,11 @@ h1, h2, h3 {
   right: 5px;
 }
 
+.theme img {
+  position: relative;
+  height: initial;
+}
+
 .blockquote {
   background: #f9f9f9;
   border-left: 10px solid #ccc;
