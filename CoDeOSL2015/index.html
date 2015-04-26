@@ -454,9 +454,10 @@ This life-cycle by just changing the activation strategy.
 ???
 - We started out with multiple simple toggle systems in FINN
 - Configuration files, database-tables etc.
-- Feature toggling => Fairly general problem
-- we wanted to have all toggles in one system for simplicity
-- Make it dead simple for developers to take advantage of feature toggles.
+- Feature toggling
+  - Fairly general problem
+  - all toggles in one system
+- Make it simple for developers to take advantage of feature toggles.
 - Right now we have XXX toggles in FINN.
 
 
@@ -467,10 +468,9 @@ This life-cycle by just changing the activation strategy.
 
 ???
 Unleash consists of three parts:
-1. unleash-service - a simple micro-service
+1. Unleash Service - A simple micro-service
 2. Unleash Admin - Dashboard for create and update feature toggles
-3. Unleash-clients(er) - Client-library for using feature toggling
-in the applications.
+3. Unleash Clients(er) - Client-library for using feature toggling in the applications.
 
 
 ---
@@ -479,13 +479,18 @@ in the applications.
 
 - Define new feature toggles
 - Enable / disable feature toggles
-- Choose and configure activation strategies
-- Define new strategies
+- Activation strategies
 
 
 .right[
 <img src="images/unleash_admin.png" style="width: 500px;border: 1px solid gray;">
 ]
+
+???
+**Used to:**
+- Define new toggles
+- Enable / disable toggles
+- Configure toggles with an activation strategy
 
 ---
 # Unleash :: The Client
@@ -499,6 +504,9 @@ in the applications.
 
 ???
 - The robust, and kind of **fat**, client
+- Holds a local in-memory representation of all toggles
+- Done this to make it super-fast and independent of the server
+- Shold work even if the unleash-server goes down.
 
 ---
 class: center, middle, inverse
@@ -531,10 +539,18 @@ Feel free to use it, contribute and suggest improvements!
 
 
 ???
-- the main purpose of toggles is to perform release with minimum risk,
-once release is complete toggles need to be removed.
-- Feature Flags need to be Short Lived
-- eliminating the costs of maintaining and supporting long-lived branches.
+**Feature toggles**
+- Makes merge problems go away
+- Decouple deploy and release of features
+- Allows us to release with minimum risk
+- One-branch development makes it safer to refactor our code often
+
+**Be careful**
+- The toggles are nasty form of techniqual depth
+- It makes it harder to test and reason about the code
+
+
+**Does not make sense in library code**
 
 ---
 
@@ -542,9 +558,15 @@ once release is complete toggles need to be removed.
 
 .large[
 - But not for complete features!
-- They should be short lived
-- And you should use pull requests to get a good review process with your team
+- They should be short lived.
+- Use pull requests and the review process
 ]
+
+???
+I still think we should use branches
+- especially locally
+- They should be short lived and does not need to implement a full user story
+- We should use pull-requests to mergde them
 
 ---
 class: inverse, center, middle
