@@ -33,6 +33,13 @@ this issue._]
 
 #### Ivar Conradi Østhus <br /> Lead Developer <br /> FINN.no
 
+???
+- My name => Ivar Østhus
+- I work as a developer for FINN.no
+- In this talk I will:
+ - present feature toggles
+ - and how this simple technique allows us to release features gradually
+
 <table class="bottom">
   <tr>
     <td class="rightify"><img src="images/twitter.png" height="20" /></td>
@@ -58,12 +65,14 @@ class: background-img
 ]
 
 ???
-- In FINN -> treat master branch as highway to production.
+- In FINN:
+ - We are about 140 devs doing 650 releases a week.
+ - master branch ==> highway to production.
 - Everything we check in to master:
- - Will be built and integration test executed
- - Will be deployed to test-environments
- - Integration tests will be executed
- - And new code will be ready to be deployed to production
+ - built and integration tests executed
+ - deployed to test-environments
+ - Integration tests are executed
+ - New code will be ready to be deployed to production with a push of a button
 
 (We have a custom built pipeline system to manage all this.)
 
@@ -73,8 +82,9 @@ class: middle, center, inverse
 # The master highway works well for <br /> small changes!
 
 ???
-- bug-fixes
-- minor adjustments
+- The current setup is perfect for getting out small changes
+ - minor feature tweaks
+ - bug-fixes
 
 ---
 # ...but not all changes are small
@@ -85,6 +95,16 @@ class: middle, center, inverse
 - **Unfinished features**
  - can not be exposed to end users!
  - can not block the master branch!
+
+???
+- Some features requires more effort to be built
+ - days, weeks, months
+ - multiple teams, applications services involved
+- Unfinished features
+ - can not be available to the users
+ - should not block the master highway
+
+
 ---
 # Feature branches
 <img class="fullwitdh border" src="images/feature_branch_simple.jpg" />
@@ -93,14 +113,16 @@ class: middle, center, inverse
 - The traditional way to isolate new code
 - A separate branch for every new features
 - New code will not hit production before you are ready.
-- Delays the integration cost
+- Feature branches:
+ - Delays the integration cost
 
 ---
 class: center, middle
 <img  src="images/pull_request.png" style="width:50%;" />
 
 ???
-- Pull Request ⇨ the best thing about branch and merge approach!
+- Pull Request
+ - **the best thing about branch and merge approach!**
 - Good support in many common tools:
  - GitHub
  - Stash
@@ -114,7 +136,8 @@ class: center, middle
 ???
  - Increased complexity with multiple branches
  - expensive to merge
- - We can reduce this by actively cost by syncing changes on master
+ - We can reduce this by actively cost by syncing changes from master
+ - How do we know that features work together?
 
 ---
 class: background-img
@@ -123,7 +146,7 @@ class: background-img
 ???
 Very hard to refactor the code when multiple concurrent branches exists
 - framweworks and libraries
-- "let refactor later!"
+- __let's refactor later!__
 
 ---
 # Feature Branches - Summary
@@ -145,16 +168,16 @@ Very hard to refactor the code when multiple concurrent branches exists
 ???
 Pros:
 - Simple and safe
-- No code hits production before you merge
-- Easy to test new stuff without affecting others
-- pull requests & code review
+- No code will go to production before it's merged back to master
+- Easy to test out new stuff without affecting others
+- The best think: **Code review via pull requests**
 
 Cons:
-- expensive to merge
+- Expensive to merge
 - Difficult to share new code across branches
-- Fear of refactoring
-- Difficult to present your new features
+- **Fear of refactoring**
 - How do we know that multiple features works well together
+- Difficult to present your new features
 
 ---
 class: background-img
@@ -164,26 +187,20 @@ class: background-img
 .img-src[https://www.flickr.com/photos/howzey/3805038515]
 
 ???
-Feature Toggles is a simple technique
-- allows us to work directly on master
+**Feature Toggles is a simple technique**
+- work on new features directly on master
 - roll-out 'unfinished' code to production
 - hides unfinished functionality from the user
-- reducing risk associated with large change
-- allows us to test new features in production
-- separates deploy and release of new features
+- and it allows us to offer different experiences to different users
+
+**Separates deploy and release of new features**
 - Gives us control:
  - when and how new features will be rolled out to our users.
-
-# Feature toggles - summary
-
-- Distinguish **release** and **deploy** of functionality
-- We decide _who_ gets (and when) a new feature
+ - Gradual roll-out of new features
 - Test new features early in production
-- Gradual roll-out of new features
+- Reducing risk associated with larg
 - Lightning fast roll-back
 
-
-###  Using flags and conditional statements to offer different experiences to different users or to turn on code
 
 
 ---
@@ -249,10 +266,10 @@ to which users.
 ### ⇨ Gradual roll-out of features
 
 ???
-Feature toggles ⇨ a tool do selective release of new features
-- minimize the risk of releasing new toggles
-- minimize the
-
+Feature toggles
+- a tool do selective release of new features
+- only releasing our featuteres to a subset of our user-base.
+- minimize the risk of releasing new features
 
 ---
 class: inverse, middle
@@ -264,12 +281,8 @@ class: inverse, middle
 ???
 Feature toggles combined with activation strategies
 ⇨ this is where the fun begins!
+- allows us to decide who we want to enable a new feature for!
 - Allows us to unleash our new features gradually
-
-e.g.
-- activate features only for specific users,
-- active for specific client IPs
-- active at a specified time.
 
 ---
 
@@ -286,6 +299,13 @@ Rules that decides when a _feature toggle_ is active
 
 ** ⇨ Gradual roll-out of new features**
 
+???
+- rules that decides when a toggle is active.
+Many different kinds:
+- For specific user, e.g. only for my team
+- For specific roles or classes of users. E.g. Beta users
+- Test feature with full load, but only on one server,
+**again to minimize risk!**
 
 
 ---
@@ -300,34 +320,31 @@ Rules that decides when a _feature toggle_ is active
 ]
 
 ???
-Release toggles are supposed to make it easier and safer to push code out.
-You can push code out only to a limited number of users to start, reducing
-the impact of problems, or dark launch features incrementally, carefully
-assessing added performance costs as you turn on some of the logic behind
-the scenes, or run functions in parallel. And you can roll-back quickly by
-turning off features or optional behavior if something goes wrong or if
-the system comes under too much load.
 
-
-- feature toggles ⇨ increased control of access to new feature
-- can gradually roll out our new features
-- very simple to roll back features
+**Feature Foggles**
+- Gives increased control of access to new feature
+- Makes it safer to push code out!
+- Allows us to verify our new feature, before exposing it to **everyone**
+- Fast and simple to roll it back:
  - if we discover errors
  - if the new feature is not performing
+- **Iterate until we are done!**
 
 ---
 class: inverse, center, middle
 
-# production ≠ development
+# development ≠ production
 
 ???
-Feature toggles allows us to test new features in production
-with real users and real data.
+- We all know this, even though we wont admit it.
+- Feature toggles enables us to test features in production with real data
+- **Is the firewall really open???**
 
 ---
 class: background-img
-# Clean up your mess!
 <img src="images/pollution.jpg">
+
+# Clean up your mess!
 
 .img-src[https://www.flickr.com/photos/epsos/5444678656/]
 
@@ -339,19 +356,15 @@ class: background-img
 
 ???
 - A feature toggle is technical depth from the moment it is created
+ - each toggle is a new if-statement
+ - represent a new path in the application
 - Review flags often
-- Delete feature toggles when you are finished with them
+- Delete feature toggles
+ - when you are finished with them
  - Very costly to maintain over team
- - Represent a different "path" in your application
 - Avoid permanent 'feature toggles' when possible
-
-The plumbing and scaffolding logic to support branching in code becomes a nasty
-form of technical debt, from the moment each feature switch is introduced.
-Feature flags make the code more fragile and brittle, harder to test, harder to
-understand and maintain, harder to support, and less secure.
-
-Review flags often, make sure that you know which flags are on and which
-are supposed to be on and when features are going to be removed
+ - Makes the application harder to reason about
+ - Why is this toggle on?
 
 
 
@@ -370,14 +383,15 @@ class: background-img
 .img-src[https://www.flickr.com/photos/eschipul/4160817135]
 
 ???
-How to test?
+**How to test?**
 - Each toggle represent a new path in your application
-- General advice is to not test all possbible combination
-- Test your code with the same toggle configuration you expect in production!
+- General advice:
+ - **not test all possbible combination*
+- Test your code:
+ - with the same toggle configuration you expect in production!
 
-You might not see what your users see!
-- Having a toggle turned on for yourself makes you somehting different than
-your users!
+**You see something else!!?**
+- Having a toggle turned on for yourself makes you see somehting different than your users!
 
 ---
 
@@ -399,19 +413,10 @@ use the feature that will improve the enhancements you make later.
 
 
 ???
-
-- A toggle in itself is technical depth when it is created
-- A new feature is a risk until it is in use by real users.
+- A new feature is a risk until it is **in use by real users.**
 - Try to split up features first, only use feature toggles if necessary.
-
-"Release toggles are supposed to make it easier and safer to push code out.
-You can push code out only to a limited number of users to start, reducing
-the impact of problems, or dark launch features incrementally, carefully
-assessing added performance costs as you turn on some of the logic behind
-the scenes, or run functions in parallel. And you can roll-back quickly by
-turning off features or optional behavior if something goes wrong or if
-the system comes under too much load.
-"
+- They should not be an excuse to delay releases, they should be a reason
+to release stuff more often!
 
 
 ---
@@ -424,12 +429,11 @@ class: center
 
 This life-cycle by just changing the activation strategy.
 
-
 1. Start working on a new feature (disabled in production)
-2. Enable the new feature for the team working on it
+2. Enable the new feature for the team
 3. Enable the feature to a percentage of the users
 4. Enable the feature for everyone
-5. **Delete the feature toggle.**
+5. **Delete the feature toggle.** when you are done with it
 
 ---
 
@@ -450,23 +454,10 @@ This life-cycle by just changing the activation strategy.
 ???
 - We started out with multiple simple toggle systems in FINN
 - Configuration files, database-tables etc.
-- Fairly general issue
-- Wanted to have all toggles in one place for simplicity
+- Feature toggling => Fairly general problem
+- we wanted to have all toggles in one system for simplicity
 - Make it dead simple for developers to take advantage of feature toggles.
 - Right now we have XXX toggles in FINN.
-
-Mere:
-- Laget av ildsjeler i FINN fordi vi hadde lyst
-- Enkelt å bruke toggles for alle
-- Laget så liten og konsis som mulig
- - Grundig design upfront for å sikre konsistent API
-- Open source
- - Koster selsvsagt litt ekstra
- - Gøy for oss som lager det
- - andre selskaper kan dra nytte av det vi gjør
- - andre selskaper kan bidra til en felles løsning
- - Schibsted Ready !!
-
 
 
 ---
