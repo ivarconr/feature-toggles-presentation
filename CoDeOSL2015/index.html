@@ -228,8 +228,9 @@ if(unleash.isEnabled("AwesomeFeature")) {
 ]
 
 ???
-A feature toggle is just a simple IF-condition
-
+- A feature toggle is just a simple IF-condition
+- Very easy to get started
+- Just a property file in the beginning!
 
 ---
 
@@ -244,7 +245,7 @@ A feature toggle is just a simple IF-condition
 
 ???
 - Use as few ```if statements``` as possible
-- Protect the entry point (link) for new UI-components
+- only entry point (link) for new UI-components
 - _New APIs does not need protection_
  - existing clients does not know the capability
 
@@ -258,12 +259,12 @@ class: inverse, center, middle
 
 ???
 - deploy new code directly on master-branch
-- helps to achieve the zero-downtime release.
-- We can switch user from one version to the next
-- enables developers to deploy new versions of application continuously
-- completely independent of the decision as to which features are available
-to which users.
-- instantaneously rollback to previous release when required.
+- zero-downtime release.
+- switch user from one version to the next
+- enables developers
+ - to deploy new versions of application continuously
+ - independent of which features should be enabled
+- fast rollback if required.
 
 
 ---
@@ -419,15 +420,17 @@ are the same ones as any strategy based on small, frequent releases. You reduce
 the risk of things going wrong and you get valuable feedback on how users actually
 use the feature that will improve the enhancements you make later.
 ]
-.author[Martin Fowler]
+_- Martin Fowler_
 
 
 
 ???
-- A new feature is a risk until it is **in use by real users.**
-- Try to split up features first, only use feature toggles if necessary.
-- They should not be an excuse to delay releases, they should be a reason
-to release stuff more often!
+- Martin Fowler:
+ - A  feature is a risk until it is **in use by real users.**
+ - Split up features first,
+ - only use feature toggles if necessary.
+- Should **not** be an excuse to delay releases,
+- Should be a reason to release stuff more often!
 
 
 ---
@@ -463,6 +466,7 @@ This life-cycle by just changing the activation strategy.
 ]
 
 ???
+- Unlesh ==> a feature toggle framework developed by FINN.no
 - We started out with multiple simple toggle systems in FINN
 - Configuration files, database-tables etc.
 - Feature toggling
@@ -528,13 +532,13 @@ Feel free to use it, contribute and suggest improvements!
 #### https://github.com/finn-no/unleash
 
 ---
-## Feature toggles - summary
+## Feature toggles - Summary
 
 #### Pros
 - No merge problems
-- Allows us to deploy our code often
 - Decoupling deployment and release
 - Safer to refactor code on master branch
+- Allows us to deploy our code often
 - Lightning fast rollback if problems are detected
 - Selective release via activation strategies
 - Iterate and improve new features
