@@ -47,9 +47,10 @@ this issue._]
 ???
 - My name => Ivar Østhus
 - I work as a developer for FINN.no
+-
 - In this talk I will:
  - present feature toggles
- - and how this simple technique allows us to release features gradually
+ - how it allows us to release features gradually
 
 <table class="bottom">
   <tr>
@@ -80,11 +81,11 @@ class: background-img
  - We are about 140 devs doing 650 releases a week.
  - master branch ==> highway to production.
 - Everything we check in to master:
- - built
- - unit tests executed
+ - Built
+ - Unit tests executed
  - deployed to test-environments
  - Integration tests are executed
- - New code will be ready to be deployed to production with a push of a button
+ - Can then deploy to production with a push of a button
 
 (We have a custom built pipeline system to manage all this.)
 
@@ -94,13 +95,14 @@ class: middle, center, inverse
 # The master highway works well for <br /> small changes!
 
 ???
-- The current setup is perfect for getting out small changes
+- The current setup
+ - perfect for small changes
  - minor feature tweaks
  - bug-fixes
 
 ---
 # ...but not all changes are small
-- **Some features requires more effort to be built**
+- **Some features requires more effort**
  - days, weeks, months to be completed
  - multiple teams
  - multiple applications/services
@@ -109,11 +111,11 @@ class: middle, center, inverse
  - can not block the master branch!
 
 ???
-- Some features requires more effort to be built
+- **Some features requires more effort**
  - days, weeks, months
- - multiple teams, applications services involved
-- Unfinished features
- - can not be available to the users
+ - multiple teams, and applications involved
+- **Unfinished features**
+ - can not be released to the users
  - should not block the master highway
 
 
@@ -123,10 +125,10 @@ class: middle, center, inverse
 
 ???
 - The traditional way to isolate new code
-- A separate branch for every new features
-- New code will not hit production before you are ready.
-- Feature branches:
- - Delays the integration cost
+- Separate branch
+ - for every new features
+ - Code will not hit production before it's merged.
+- Delays the integration cost
 
 ---
 class: center, middle
@@ -134,11 +136,10 @@ class: center, middle
 
 ???
 - Pull Request
- - **the best thing about branch and merge approach!**
-- Good support in many common tools:
+ - **the best about branch and merge approach**
+- Great support in common tools:
  - GitHub
  - Stash
- - etc.
 
 ---
 # Concurrent branches
@@ -146,19 +147,21 @@ class: center, middle
 <img class="fullwitdh border" src="images/feature_branch_double.jpg" />
 
 ???
- - Increased complexity with multiple branches
+- What if we have multiple features?
+ - Increased complexity
  - expensive to merge
- - We can reduce this by actively cost by syncing changes from master
- - How do we know that features work together?
+- Syncing master-fixes can reduce cost
+- Does features work together?
 
 ---
 class: background-img
 <img  src="images/keep-refactoring-and-carry-on.png" />
 
 ???
-Very hard to refactor the code when multiple concurrent branches exists
-- framweworks and libraries
-- __let's refactor later!__
+- Hard to refactor master
+  - when multiple concurrent branches exists
+  - framweworks and libraries
+  - __let's refactor later!__
 
 ---
 # Feature Branches - Summary
@@ -395,15 +398,15 @@ class: background-img
 .img-src[https://www.flickr.com/photos/eschipul/4160817135]
 
 ???
-**How to test?**
-- Each toggle represent a new path in your application
-- General advice:
- - **not test all possbible combination*
-- Test your code:
+- **How to test?**
+ - Each toggle represent a new path in your application
+ - General advice: **not test all possbible combination*
+ - Test your code:
  - with the same toggle configuration you expect in production!
-
-**You see something else!!?**
-- Having a toggle turned on for yourself makes you see somehting different than your users!
+- **You see something else!!?**
+ - You have a toggle ON
+ - Everyone else have it off
+ - You see something else!
 
 ---
 
@@ -438,8 +441,6 @@ class: center
 # Life-cycle of a feature toggle
 
 <img class="border" style="width: 60%;" src="images/feature_toggle_lifecycle.jpg" />
-
-???
 
 This life-cycle by just changing the activation strategy.
 
@@ -538,9 +539,8 @@ Feel free to use it, contribute and suggest improvements!
 
 #### Pros
 - No merge problems
-- Decoupling deployment and release
+- Decoupling deployment of code and release of features
 - Safer to refactor code on master branch
-- Allows us to deploy our code often
 - Lightning fast rollback if problems are detected
 - Selective release via activation strategies
 - Iterate and improve new features
@@ -551,23 +551,21 @@ Feel free to use it, contribute and suggest improvements!
 - Accidental exposure of unfinished features
   - can be a security risk
 - Testing becomes harder
-- The code will be more fragile and harder to understand
 - Long lived toggles are very costly!
 
 
 ???
-**Feature toggles**
-- Makes merge problems go away
-- Decouple deploy and release of features
-- Allows us to release with minimum risk
-- One-branch development makes
- - it safer to refactor our code often
-
-**Be careful**
-- Foggles are nasty form of techniqual depth
-- Each toggle is a new path in out application
+- **Feature toggles**
+ - Makes merge problems go away
+ - Allows us to deploy code more often
+   - and reduses the deployment-risk
+   - test new features ealry in production
+ - Easier to refactor the code
+- **Be careful**
+ - Foggles are nasty form of techniqual depth
+ - Each toggle is a new path in out application
  - Makes it harder to test
- - harder to understand
+ - Accidental exposure of unfinished features
 
 ---
 
@@ -580,10 +578,10 @@ Feel free to use it, contribute and suggest improvements!
 ]
 
 ???
-I still think we should use branches
-- Short lived, max a few days work
-- not implement a full user story // feature
-- Use pull-requests to merge (code review)
+- We should use branches
+ - Short lived => max a few days work
+ - not implement a full user story // feature
+ - Use pull-requests to merge (code review)
 
 ---
 class: inverse, center, middle

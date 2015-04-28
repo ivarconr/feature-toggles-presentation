@@ -34,4 +34,4 @@ Feature branches: multiple features
 Remember:
 - A toggle in itself is technical depth when it is created
 - A new feature is a risk until it is in use by real users.
-- Try to split up features first, only use feature toggles if necessary. 
+- Try to split up features first, only use feature toggles if necessary.
