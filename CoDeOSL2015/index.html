@@ -80,7 +80,8 @@ class: background-img
  - We are about 140 devs doing 650 releases a week.
  - master branch ==> highway to production.
 - Everything we check in to master:
- - built and integration tests executed
+ - built
+ - unit tests executed
  - deployed to test-environments
  - Integration tests are executed
  - New code will be ready to be deployed to production with a push of a button
@@ -258,12 +259,11 @@ class: inverse, center, middle
 
 
 ???
-- deploy new code directly on master-branch
+- enables developers
+ - deploy new versions of application continuously
+ - independent of which features should be enabled
 - zero-downtime release.
 - switch user from one version to the next
-- enables developers
- - to deploy new versions of application continuously
- - independent of which features should be enabled
 - fast rollback if required.
 
 
@@ -281,7 +281,7 @@ class: inverse, center, middle
 Feature toggles
 - a tool do selective release of new features
 - only releasing our featuteres to a subset of our user-base.
-- minimize the risk of releasing new features
+- Detect problems before they get big
 
 ---
 class: inverse, middle
@@ -433,7 +433,7 @@ _- Martin Fowler_
 - Should be a reason to release stuff more often!
 
 
----
+<!---
 class: center
 # Life-cycle of a feature toggle
 
@@ -448,7 +448,7 @@ This life-cycle by just changing the activation strategy.
 3. Enable the feature to a percentage of the users
 4. Enable the feature for everyone
 5. **Delete the feature toggle.** when you are done with it
-
+-->
 ---
 
 # Unleash
@@ -503,9 +503,11 @@ Unleash consists of three parts:
 
 ???
 **Used to:**
-- Define new toggles
+- Create new toggles
 - Enable / disable toggles
-- Configure toggles with an activation strategy
+- Configure toggles
+ - with an activation strategy
+- history log
 
 ---
 # Unleash :: The Client
@@ -558,14 +560,14 @@ Feel free to use it, contribute and suggest improvements!
 - Makes merge problems go away
 - Decouple deploy and release of features
 - Allows us to release with minimum risk
-- One-branch development makes it safer to refactor our code often
+- One-branch development makes
+ - it safer to refactor our code often
 
 **Be careful**
-- The toggles are nasty form of techniqual depth
-- It makes it harder to test and reason about the code
-
-
-**Does not make sense in library code**
+- Foggles are nasty form of techniqual depth
+- Each toggle is a new path in out application
+ - Makes it harder to test
+ - harder to understand
 
 ---
 
@@ -579,9 +581,9 @@ Feel free to use it, contribute and suggest improvements!
 
 ???
 I still think we should use branches
-- especially locally
-- They should be short lived and does not need to implement a full user story
-- We should use pull-requests to mergde them
+- Short lived, max a few days work
+- not implement a full user story // feature
+- Use pull-requests to merge (code review)
 
 ---
 class: inverse, center, middle
