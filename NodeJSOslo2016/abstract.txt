@@ -1,18 +1,16 @@
-Ivar Østhus about NodeJS used for their Unleash service used in Finn.no.
-It is a key piece in their strategy of continuous integration and it's
-written in Node. This shows that Node is making it's way into the
-core services of businesses in Oslo.
-
-
 ----//
+Unleash your features gradually
 At FINN.no we are 120 developers deploying code to production multiple times a
-day. We have a few web applications and a few hundred running micro-services in
-production and integrate code in production even before new features are ready
-for the end user. And when the feature is complete we gradually roll out the
-new feature to our end users. This allows us to verify the performance of the
-new feature and that it actually solves the user problem it targets. In this
-talk I will briefly introduce the feature toggle technique in general and how
-this allows us to separate deploy and release of new features. I will also
+day. When a new feature is complete we use Unleash to gradually roll the new feature to
+our users. This allows us to verify new features before enabling them to all.
+In this talk I will briefly introduce the feature toggle technique in general and how
+this allows us to separate deploy and the release of new features. I will also
 introduce Unleash, an open source feature toggle system, we developed to solve
-this issue.
+this issue. An yes, it is written in Node.
+
+Ivar Østhus loves to play with new frontend technologies. The last few years he has
+been working as a frontend developer and architect at FINN.no.
+
+Twitter: @ivarconr
+GitHub: https://github.com/ivarconr
 //-----

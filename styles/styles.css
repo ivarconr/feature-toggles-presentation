@@ -159,3 +159,7 @@ h1, h2, h3 {
 .blockquote p {
   display: inline;
 }
+
+a, a:visited {
+    color: silver;
+}
