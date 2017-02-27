@@ -14,7 +14,7 @@ class: middle inverse
 
 Ivar Conradi Østhus 
 <br />
-<br /> Front-End Architect and Developer
+<br /> Front-End Architect &amp; Developer
 <br /> FINN.no
 
 <table class="bottom">
@@ -27,14 +27,6 @@ Ivar Conradi Østhus
     <td class="leftify strong">ico@finn.no</td>
   </tr>
 </table>
-
-???
-- My name => Ivar Østhus
-- I work as a developer for FINN.no
--
-- In this talk:
- - present feature toggles
- - how it allows us to release features gradually
 
 <table class="bottom">
   <tr>
@@ -67,17 +59,12 @@ class: background-img
 ]
 
 ???
-- In FINN:
- - We are about 140 devs doing 650 releases a week.
- - master branch ==> highway to production.
 - Everything we check in to master:
- - Built
+ - Built by travis
  - Unit tests executed
- - deployed to test-environments
+ - Deployed to test-environments
  - Integration tests are executed
- - Can then deploy to production with a push of a button
-
-(We have a custom built pipeline system to manage all this.)
+ - Deploy to production "automatically" or "push a button""
 
 ---
 class: middle, center, inverse
@@ -85,28 +72,22 @@ class: middle, center, inverse
 # The master highway works well for <br /> small changes!
 
 ???
-- The current setup
- - perfect for small changes
- - minor feature tweaks
- - bug-fixes
+- perfect for small changes
+- tweaks and bug fixes 
 
 ---
 # ...but not all changes are small
-- **Some features requires more effort**
- - days, weeks, months to be completed
- - multiple teams
- - multiple applications/services
-- **Unfinished features**
- - can not be exposed to end users!
- - can not block the master branch!
 
-???
-- **Some features requires more effort**
- - days, weeks, months
- - multiple teams, and applications involved
-- **Unfinished features**
- - can not be released to the users
- - should not block the master highway
+<br />
+**Some features requires more effort**
+- days, weeks, months
+- multiple teams
+- multiple applications/services
+
+<br />
+**Unfinished features**
+- can not be exposed to end users!
+- can not block the master branch!
 
 
 ---
@@ -115,9 +96,8 @@ class: middle, center, inverse
 
 ???
 - The traditional way to isolate new code
-- Separate branch
- - for new features
- - Code will go to production before it's merged.
+- Separate branch *per* feature
+- Code will **NOT** go to production before it's merged.
 - Delays the integration cost
 
 ---
@@ -125,11 +105,9 @@ class: center, middle
 <img  src="images/pull_request.png" style="width:50%;" />
 
 ???
-- Pull Request
- - **the best about branch and merge approach**
-- Great support in common tools:
- - GitHub
- - Stash
+Pull Requests!
+- **The best about branch and merge approach**
+- Great support in common tools (GitHub, Stash etc)
 
 ---
 # Concurrent branches
@@ -157,11 +135,12 @@ class: background-img
 # Feature Branches - Summary
 
 **Pros:**
-- Safe to commit code in separate branch
+- Safe to commit code to separate branch
 - No code will hit production before it is merged
 - High degree of code isolation
 - Code review via _pull-requests_
 
+<br />
 **Cons:**
 - The *merge itself* can be very hard and costly!
 - Difficult to share new code across branches
@@ -192,17 +171,18 @@ class: background-img
 .img-src[https://www.flickr.com/photos/howzey/3805038515]
 
 ???
-- **Feature Toggles is a simple technique**
- - work on new features directly on master
- - roll-out 'unfinished' code to production
- - hide unfinished functionality
-- **Separates deploy and release of new features**
- - Gives more control
- - when and how to roll-out features.
- - => Gradual roll-out of new features
- - Test new features early in production
- - Reducing risk associated with deployment
- - Fast roll-back
+**Feature Toggles is a simple technique**
+- Work on new features directly on master
+- Roll-out 'unfinished' code to production
+- Hide unfinished functionality
+
+**Separates deploy and release of new features**
+- Gives more control
+- When and how to roll-out features.
+- Gradual roll-out of new features
+- Test new features early in production
+- Reducing risk associated with deployment
+- Fast roll-back
 
 
 
@@ -211,10 +191,10 @@ class: middle
 
 .large[
 ```java
-if(unleash.isEnabled("AwesomeFeature")) {
-//do some magic
+if (unleash.isEnabled("AwesomeFeature")) {
+  // some new magic
 } else {
-//do old boring stuff
+  // old boring stuff
 }
 ```
 ]
@@ -229,78 +209,77 @@ if(unleash.isEnabled("AwesomeFeature")) {
 ---
 class: inverse, center, middle
 
-# Decoupling <br /> .red[**deployment**] of code <br /> and <br /> .green[**release**] of new features
+# decouple .red[**deployment**] of code <br /> from <br /> .green[**release**] of features
 
 
 ???
-- enables developers
+- Enables us to:
  - deploy new versions of application continuously
  - independent of which features should be enabled
- - product owner
-- switch user from one version to the next
-- zero-downtime release.
-- fast rollback if required.
+ - product owner can decide
+- Switch user from one version to the next (per feature)
+- Zero-downtime release.
+- Fast rollback if required.
 
 
 ---
 class: 
 # Activation Strategies
 
-- Rules that decides when a _feature toggle_ is active
-- Test things on early users and react to their responses
-- Detect problems before they get big
+**Selective release of features**
 
-**Allows us to do selective release of our features**
+- Rules that decides when a _feature toggle_ is active
+- Test new features early on real users
+- Detect problems before they get big!
+
+
+
 
 ???
-Feature toggles combined with activation strategies
-⇨ this is where the fun begins!
-- allows us to decide who we want to enable a new feature for!
-- Allows us to unleash our new features gradually
+- This is where the fun begins!
+- Decide who we want to enable a new feature for!
+- Enables gradual roll-out of features
 
 ---
 
 # Common Activation Strategies
 .img-src[https://github.com/Unleash/unleash/blob/master/docs/activation-strategies.md]
 
-- DefaultStrategy
-- UserIdStrategy
-- GradualRolloutUserIdStrategy
-- GradualRolloutSessionIdStrategy
-- GradualRolloutRandomStrategy
-- RemoteAddressStrategy
-- ApplicationHostnameStrategy
+- Default
+- UserWithId
+- GradualRolloutUserId
+- GradualRolloutSessionId
+- GradualRolloutRandom
+- RemoteAddress
+- ApplicationHostname
 
 ** ⇨ Gradual roll-out of new features**
 
 ???
-- rules that decides when a toggle is active.
-- Many different kinds:
- - user => only for me and my teamates
- - roles => E.g. Beta users
- - server-node => Test feature with full load, but only on one server,
+- These are used in FINN.no
 
 ---
 
 # Increased control
 .large[
-- Allows us to **test** the new feature on a limited group
+- Allows us to **test** a new feature on a limited group
 - **Verify** that the new feature solves real user problems
 - Lightning fast **rollback** if problems are detected
 - **Iterate** the new feature to make it better
-
 ]
+
+(Test, Verify, Rollback, Iterate...)
 
 ???
 
 **Increased controll**
 - Test on a small group
-- safer to push code!
-- verify feature, before exposing it to **everyone**
+- Verify a feature, before exposing it to **everyone**
 - Fast and simple roll-back:
  - discover errors
  - not performing
 - **Iterate until we are done!**
+- Becomes safer to push code!
 
 ---
 class: inverse, center, middle
@@ -327,14 +306,14 @@ class: background-img
 ]
 
 ???
-- Technical debt from the moment it is created
+- **Technical debt from the moment it is created**
  - a new if-statement
  - a new path in the application
-- Review flags often
-- Delete feature toggles
+- **Review flags often**
+- **Delete feature toggles**
  - when it is not needed anymore
  - costly to maintain over team
-- Avoid permanent 'feature toggles' when possible
+- **Avoid permanent 'feature toggles' when possible**
  - harder to reason about app
 
 
@@ -356,7 +335,7 @@ class: background-img
 - **How to test?**
  - Every toggle represent a new path in your application
  - **Do not test all possbible combination**
- - same configuration as in production!
+ - Same configuration as in production!
 - **You see something else!!?**
  - You have a toggle ON
  - Everyone else have it off
@@ -384,7 +363,7 @@ _- Martin Fowler_
 ???
 - Martin Fowler:
  - Split up features first,
- - only use feature toggles if necessary.
+ - Only use feature toggles if necessary.
  - A new feature is a risk until it is **in use by real users.**
 - Should **not** be an excuse to delay releases,
 - Should be a reason to release stuff more often!
@@ -403,24 +382,24 @@ _- Martin Fowler_
 
 #### Cons
 - Feature toggles are technical debt
-- Accidental exposure of unfinished features
-  - can be a security risk
+- Accidental exposure of unfinished features (can be a security risk)
 - Testing becomes harder
 - Long lived toggles can be costly!
 
 
 ???
-- **Feature toggles**
- - Makes merge problems go away
- - Allows us to deploy code more often
-   - and reduses the deployment-risk
-   - test new features ealry in production
- - Easier to refactor the code
-- **Be careful**
- - Foggles are nasty form of techniqual debt
- - Each toggle is a new path in out application
- - Makes it harder to test
- - Accidental exposure of unfinished features
+**Feature toggles**
+- Makes merge problems go away
+- Allows us to deploy code more often
+- Reduses the deployment-risk
+- Test new features early in production
+- Easier to refactor the code
+
+**Be careful**
+- Foggles are nasty form of techniqual debt
+- Each toggle is a new path in out application
+- Makes it harder to test
+- Accidental exposure of unfinished features
 
 ---
 
@@ -442,16 +421,14 @@ _- Martin Fowler_
 
 # Unleash
 
-.large[
 - Feature toggles framework
  - All our _feature toggles_ in the same dashboard
  - A shared and robust client
  - KISS!
 - Multi-platform
- - Official client SDK for Java and Node
+ - Official client SDK for Java and Node.js
 - **It's open source!**
  - https://github.com/Unleash
-]
 
 
 ---

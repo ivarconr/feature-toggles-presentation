@@ -63,7 +63,7 @@ h1, h2, h3 {
 }
 .inverse h1, .inverse h2 {
   color: #f3f3f3;
-  line-height: 0.8em;
+  line-height: 1em;
 }
 .rightify {
   text-align: right;
