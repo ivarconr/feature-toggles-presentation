@@ -19,12 +19,12 @@ class: middle inverse
 <br /> @ivarconr
 <br /> Front-End Architect &amp; Developer
 
-.silver[Vegard Sandvold]
-<br /> @vsandvold
-<br /> Front-End Developer
-
 .silver[Sveinung Røsaker]
 <br /> @sveisvei
+<br /> Front-End Developer
+
+.silver[Vegard Sandvold]
+<br /> @vsandvold
 <br /> Front-End Developer
 
 ---
@@ -430,6 +430,26 @@ class: middle center
 2. Unleash UI - Dashboard for create and update feature toggles
 3. Unleash SDK - Client-library for using feature toggling in the applications.
 
+---
+# Unit testing with Java Client
+
+
+```java
+//example 1
+FakeUnleash fakeUnleash = new FakeUnleash();
+fakeUnleash.enableAll();
+
+assertThat(fakeUnleash.isEnabled("unknown"), is(true));
+assertThat(fakeUnleash.isEnabled("unknown2"), is(true));
+
+//example 2
+FakeUnleash fakeUnleash = new FakeUnleash();
+fakeUnleash.enable("t1", "t2");
+
+assertThat(fakeUnleash.isEnabled("t1"), is(true));
+assertThat(fakeUnleash.isEnabled("t2"), is(true));
+assertThat(fakeUnleash.isEnabled("unknown"), is(false));
+```
 
 
 ---
@@ -437,6 +457,21 @@ class: middle inverse
 
 # Unleash [DEMO](http://unleash.herokuapp.com/)!
 
+---
+class: middle inverse
+
+# Workshop
+## https://github.com/unleash/unleash-mini-ws
+
+
+
+
+---
+class: middle inverse
+
+# A/B-testing in FINN.no
+
+---
 <br />
 <br />
 ## Learn more:
