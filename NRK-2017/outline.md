@@ -1,0 +1,33 @@
+- Something about about FINN
+ - Master == highway to production
+ - How many times do we deploy code to production every day?
+ - Should be optimized for getting new code out.
+- Feature branches
+ - What it is
+ - Why it slows us down
+ - Pros & Cons
+- Feature toggles
+ - What is it really?
+ - Separate Deploy of Code and Release of featues!
+ - Simple code example
+ - How to use it.
+ - "One danger with feature toggles is an accidental exposure"
+ - Pros & cons
+- Business toggles
+ - how are these different?
+ - Why not using the same system for this?
+ - BT => permanent feature of the application
+ - Harder to test => All combinations are permanent part of the app
+- Activation Strategies
+ - Benefits?
+ - How does this affect toggles?
+ - Moving from one strategy to next
+- Unleash
+ - Screenshots?
+ - main focus KISS!
+ - system overview
+ - The stable client
+ - How many of our applications use Unleash?
+ - How many toggles do we have @FINN.no right now?
+ - Which strategies have we implemented for FINN?
+ - Applications can implement their own strategies at will.

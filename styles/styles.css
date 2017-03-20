@@ -74,6 +74,12 @@ h1, h2, h3 {
   text-align: left;
 }
 
+.top {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
 .bottom {
   position: absolute;
   bottom: 2px;

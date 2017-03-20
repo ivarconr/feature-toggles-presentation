@@ -1,0 +1,37 @@
+At FINN.no we do continuous delivery!
+
+- ~385 deployable projects
+- ~600 new artifacts deployed every week
+- 140 developers
+ => 4,3 deployments per developer per week.
+
+Master branch => highway to production
+- Code checked in @ master
+ => unit tests
+ => automatically deployed to internal test envs
+ => integration tests trigged
+ => New code ready to be deployed to production!
+
+Challenges:
+- requires clean master!
+- does not allow for unfinnished features at the master branch
+- new features requires some time to be developed
+ - many persons involved
+ - many teams
+- Test envs != production envs
+
+Feature branches
+- simple technique
+- new features are seperated in new branches
+- keeps the master branch clean
+- we merge when new feature is ready.
+
+Feature branches: multiple features
+-
+
+
+
+Remember:
+- A toggle in itself is technical depth when it is created
+- A new feature is a risk until it is in use by real users.
+- Try to split up features first, only use feature toggles if necessary.
