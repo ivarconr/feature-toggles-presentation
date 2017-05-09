@@ -31,6 +31,7 @@ class: middle inverse
 
 
 ---
+class: inverse
 # High speed product development
 
 .large[
@@ -347,29 +348,40 @@ _- Martin Fowler_
 - Should be a reason to release stuff more often!
 
 ---
-class:
+# A/B Testing Use Cases
+- Prototyping experimental features in production
+  - Example: Topfilter
+- Validating gradual rollout of incremental improvements
+  - Example: Result page grid
 
-# A/B-testing in FINN.no
+---
+# Motivation
+- Easily accessible experiment configuration and operation
+- Randomized and sticky traffic allocation
+- Precise entry and exit points for tracking and analysis
 
-- Reasons for A/B testing
-  - Validating improvements
-  - Experimenting with new features (protoyping)
+---
+# Configuration
+- Unleash UI
+  - gradualRolloutAbTesting / abTest
+  - Combined with userWithId for internal testing etc.
 
-- Example: frontpage recommendations 12 vs. 24
-  - Vise Unleash konfigurasjon
+---
+# Reporting
+- Direct access to all relevant business metrics in Adobe
+- Might as well use Pulse in the future
 
-- Business metrics
-  - Medium and long-term KPIs
-  - Adobe, i kontekst av analyseverktøyet som allerede brukes
-  - Pulse
-
-- Implementation
-  - Systemdiagram (Vegard lager)
-  - Challenge: connecting experiment and results
+---
+# Status and future plans
+- Client-side storage and tracking
+- Apps implementation in progress
+- Connecting experiment configuration and reporting is a challenge
+- Multi-variant experiments
 
 
 
 ---
+class: inverse
 # High speed product development
 
 .large[
