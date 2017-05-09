@@ -34,8 +34,8 @@ class: middle inverse
 # High speed product development
 
 .large[
-1. Short-lived branches
-2. Feature toggled releases
+1. Short-lived feature branches
+2. Feature toggled releases to gradually roll out new features
 3. A/B-testing to validate results
 ]
 
@@ -126,37 +126,8 @@ class: background-img
   - framweworks and libraries
   - __let's refactor later!__
 
----
-# Feature Branches - Summary
-
-**Pros:**
-- Safe to commit code to separate branch
-- No code will hit production before it is merged
-- High degree of code isolation
-- Code review via _pull-requests_
-
-<br />
-**Cons:**
-- The *merge itself* can be very hard and costly!
-- Difficult to share new code across branches
-- Fear of refactoring shared code (frameworks / libs)
-- How do we know that multiple features works well together?
-- Continuous integration, testing, demonstration difficult
 
 
-???
-Pros:
-- Simple and safe
-- No code to production before it's merged
-- Easy to test new stuff
-- The best: **Code review via pull requests**
-
-Cons:
-- Expensive to merge
-- Difficult to share new code across branches
-- **Fear of refactoring**
-- How do we know that features will work together?
-- Multiple dev-environments?
 
 ---
 class: background-img
@@ -300,38 +271,6 @@ class:
 
 
 ---
-class:
-
-# A/B-testing in FINN.no
-
-- Reasons for A/B testing
-  - Validating improvements
-  - Experimenting with new features (protoyping)
-
-- Example: frontpage recommendations 12 vs. 24
-  - Vise Unleash konfigurasjon
-
-- Business metrics
-  - Medium and long-term KPIs
-  - Adobe, i kontekst av analyseverktøyet som allerede brukes
-  - Pulse
-
-- Implementation
-  - Systemdiagram (Vegard lager)
-  - Challenge: connecting experiment and results
-
-
----
-class: inverse, center, middle
-
-# development ≠ production
-
-???
-- development env != production env
-- test with real users and real data
-- e.g: **Is the firewall really open???**
-
----
 class: background-img
 <img src="images/pollution.jpg">
 
@@ -355,7 +294,6 @@ class: background-img
  - costly to maintain over team
 - **Avoid permanent 'feature toggles' when possible**
  - harder to reason about app
-
 
 ---
 class: background-img
@@ -409,6 +347,55 @@ _- Martin Fowler_
 - Should be a reason to release stuff more often!
 
 ---
+class:
+
+# A/B-testing in FINN.no
+
+- Reasons for A/B testing
+  - Validating improvements
+  - Experimenting with new features (protoyping)
+
+- Example: frontpage recommendations 12 vs. 24
+  - Vise Unleash konfigurasjon
+
+- Business metrics
+  - Medium and long-term KPIs
+  - Adobe, i kontekst av analyseverktøyet som allerede brukes
+  - Pulse
+
+- Implementation
+  - Systemdiagram (Vegard lager)
+  - Challenge: connecting experiment and results
+
+
+
+---
+# High speed product development
+
+.large[
+1. Short-lived feature branches
+2. Feature toggled releases to gradually roll out new features
+3. A/B-testing to validate results
+]
+
+---
+# Feature Branches - Summary
+
+**Pros:**
+- Safe to commit code to separate branch
+- No code will hit production before it is merged
+- High degree of code isolation
+- Code review via _pull-requests_
+
+<br />
+**Cons:**
+- The *merge itself* can be very hard and costly!
+- Difficult to share new code across branches
+- Fear of refactoring shared code (frameworks / libs)
+- How do we know that multiple features works well together?
+- Continuous integration, testing, demonstration difficult
+
+---
 ## Feature toggles - Summary
 
 #### Pros
@@ -426,39 +413,15 @@ _- Martin Fowler_
 - Testing becomes harder
 - Long lived toggles can be costly!
 
-
-???
-**Feature toggles**
-- Makes merge problems go away
-- Allows us to deploy code more often
-- Reduses the deployment-risk
-- Test new features early in production
-- Easier to refactor the code
-
-**Be careful**
-- Foggles are nasty form of techniqual debt
-- Each toggle is a new path in out application
-- Makes it harder to test
-- Accidental exposure of unfinished features
-
 ---
 
-# You should still use branches!
+## A/B testing - Summary
 
-.large[
-- But not for complete features!
-- They should be short lived.
-- Use pull requests and the review process
-]
+#### Pros
+- Verify improvement
 
-???
-- We should use branches
- - Short lived => max a few days work
- - not implement a full user story // feature
- - Use pull-requests to merge (code review)
-
-
-
+#### Cons
+- 
 
 
 
